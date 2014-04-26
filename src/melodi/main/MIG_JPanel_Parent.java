@@ -12,18 +12,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
 import java.nio.charset.Charset;
-import java.text.Collator;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +24,6 @@ import java.util.ListIterator;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,23 +34,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSplitPane;
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.event.DocumentEvent;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
-import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.html.parser.ParserDelegator;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -69,9 +52,8 @@ import melodi.internal.Graphical_Component;
 import melodi.internal.Item;
 import melodi.internal.Items;
 import melodi.internal.Primer;
+import melodi.internal.SE;
 import melodi.internal.Segment;
-import melodi.se.SE;
-import melodi.tools.Tools;
 
 public class MIG_JPanel_Parent extends JPanel implements ActionListener,
 		MouseListener, CaretListener, MenuListener {
@@ -259,7 +241,7 @@ public class MIG_JPanel_Parent extends JPanel implements ActionListener,
 		 * Logger
 		 */
 		PropertyConfigurator
-				.configure("ressources/properties/log4j.properties");
+				.configure("resources/properties/log4j.properties");
 		logger.info("Demarrage de l'application");
 
 		/**
@@ -343,12 +325,6 @@ public class MIG_JPanel_Parent extends JPanel implements ActionListener,
 		 * State
 		 */
 		setStateWaitForNewDoc();
-//		// V2
-//		actionPerformedOpenFileAutomaticaly(
-//				"./ressources/test/Test_corpus/Abattoir.html",
-//				"./ressources/test/Test_corpus/");
-//		initDoc();
-//		// Fin v2
 
 	}
 
@@ -1929,7 +1905,7 @@ public class MIG_JPanel_Parent extends JPanel implements ActionListener,
 		Charset charset = Charset.forName("ISO-8859-1");
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
-					new FileInputStream("ressources/properties/about.html"),
+					new FileInputStream("resources/properties/about.html"),
 					charset));
 			about.read(in, charset);
 		} catch (FileNotFoundException e) {

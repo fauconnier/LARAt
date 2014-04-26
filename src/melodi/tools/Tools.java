@@ -10,7 +10,6 @@ import javax.swing.text.JTextComponent;
 import javax.swing.text.Utilities;
 
 public class Tools {
-
 	
 	public static String getText(String fichier){
 		String chaine="";
@@ -22,7 +21,6 @@ public class Tools {
 			BufferedReader br=new BufferedReader(ipsr);
 			String ligne;
 			while ((ligne=br.readLine())!=null){
-//				System.out.println(ligne);
 				chaine+=ligne+"\n";
 			}
 			br.close(); 
@@ -30,19 +28,6 @@ public class Tools {
 		catch (Exception e){
 			System.out.println(e.toString());
 		}
-	
-//		//création ou ajout dans le fichier texte
-//		try {
-//			FileWriter fw = new FileWriter (fichier);
-//			BufferedWriter bw = new BufferedWriter (fw);
-//			PrintWriter fichierSortie = new PrintWriter (bw); 
-//				fichierSortie.println (chaine+"\n test de lecture et écriture !!"); 
-//			fichierSortie.close();
-//			System.out.println("Le fichier " + fichier + " a été créé!"); 
-//		}
-//		catch (Exception e){
-//			System.out.println(e.toString());
-//		}		
 		
 		String sStraing = chaine.replaceAll("\n", "");
 		return chaine;

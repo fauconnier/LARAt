@@ -3,10 +3,7 @@ package melodi.main;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -21,11 +18,8 @@ import melodi.internal.Item;
 import melodi.internal.Items;
 import melodi.internal.MarqueurRelation;
 import melodi.internal.Primer;
+import melodi.internal.SE;
 import melodi.internal.Segment;
-import melodi.internal.Sequence;
-import melodi.se.SE;
-import melodi.tools.CustomComparator;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.jdom2.*;
@@ -63,7 +57,7 @@ public class IO_MIG {
 		document = new Document(racine);
 
 		PropertyConfigurator
-				.configure("ressources/properties/log4j.properties");
+				.configure("resources/properties/log4j.properties");
 		logger.info("Demarrage de l'application");
 	}
 

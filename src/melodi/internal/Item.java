@@ -2,8 +2,6 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-import melodi.se.SE;
-
 public class Item extends ArrayList<String> implements Graphical_Component, Comparable {
 
 	String id;

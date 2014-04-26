@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import melodi.internal.SE;
 import melodi.main.IO_MIG;
-import melodi.se.SE;
 import au.com.bytecode.opencsv.*;
 
 public class WriteCSV {

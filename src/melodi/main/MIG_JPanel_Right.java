@@ -2,35 +2,23 @@ package melodi.main;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTree;
 import javax.swing.text.html.HTMLDocument;
-import javax.swing.tree.TreeSelectionModel;
 
 
 public class MIG_JPanel_Right extends JPanel  {
@@ -443,7 +431,7 @@ public class MIG_JPanel_Right extends JPanel  {
 		JPanel middleValid_Comment = new JPanel(new GridLayout());
 
 		JPanel validPane = new JPanel(new GridBagLayout());
-		ImageIcon validIcon = new ImageIcon("ressources/images/v.png");
+		ImageIcon validIcon = new ImageIcon("resources/images/v.png");
 		valid = new JButton(validIcon);
 		valid.setVerticalTextPosition(AbstractButton.CENTER);
 		valid.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT, for
@@ -525,8 +513,8 @@ public class MIG_JPanel_Right extends JPanel  {
 		// photoLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		// photoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		// photoLabel.setPreferredSize(new Dimension(75, 100));
-		ImageIcon leftButtonIcon = new ImageIcon("ressources/images/left.gif");
-		ImageIcon rightButtonIcon = new ImageIcon("ressources/images/right.gif");
+		ImageIcon leftButtonIcon = new ImageIcon("resources/images/left.gif");
+		ImageIcon rightButtonIcon = new ImageIcon("resources/images/right.gif");
 		previousButton = new JButton("SE Prec.", leftButtonIcon);
 		previousButton.setVerticalTextPosition(AbstractButton.CENTER);
 		previousButton.setHorizontalTextPosition(AbstractButton.RIGHT); // aka

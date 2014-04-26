@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <annotation type="1">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SE>
+      <id>0</id>
+      <text>Les 5 abattoirs étaient :
+Abattoirs du Roule, avec 32 échaudoirs, construits par Louis-François Petit-Radel. Ils étaient situés rue de Miromesnil, entre la rue de Laborde et la rue de la Bienfaisance
+Abattoirs de Villejuif, avec 32 échaudoirs.
+Abattoirs de Grenelle, avec 48 échaudoirs.
+Abattoirs de Ménilmontant, avec 64 échaudoirs.
+Abattoirs de Montmartre, avec 64 échaudoirs.</text>
+      <span begin="2606" end="2984" />
+    </SE>
+    <comment />
+  </annotation>
+  <annotation type="1">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SE>
+      <id>1</id>
+      <text>Raisons de la création
+Éloignement d'une vision cruelle, du péché du crime alimentaire ;
+Problème d'environnement (pollution visuelle et olfactive) ;
+Nécessité d'obtenir une viande saine pour des raisons de santé publique.</text>
+      <span begin="4440" end="4662" />
+    </SE>
+    <comment />
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="primer" idSE="0">
+      <span begin="1" end="26" />
+      <text>Les 5 abattoirs étaient :</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="items" idSE="0">
+      <span begin="27" end="200" id="0" />
+      <text id="0">Abattoirs du Roule, avec 32 échaudoirs, construits par Louis-François Petit-Radel. Ils étaient situés rue de Miromesnil, entre la rue de Laborde et la rue de la Bienfaisance</text>
+      <span begin="201" end="244" id="1" />
+      <text id="1">Abattoirs de Villejuif, avec 32 échaudoirs.</text>
+      <span begin="245" end="287" id="2" />
+      <text id="2">Abattoirs de Grenelle, avec 48 échaudoirs.</text>
+      <span begin="288" end="334" id="3" />
+      <text id="3">Abattoirs de Ménilmontant, avec 64 échaudoirs.</text>
+      <span begin="335" end="379" id="4" />
+      <text id="4">Abattoirs de Montmartre, avec 64 échaudoirs.</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="primer" idSE="1">
+      <span begin="1" end="23" />
+      <text>Raisons de la création</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="items" idSE="1">
+      <span begin="24" end="89" id="0" />
+      <text id="0">Éloignement d'une vision cruelle, du péché du crime alimentaire ;</text>
+      <span begin="90" end="150" id="1" />
+      <text id="1">Problème d'environnement (pollution visuelle et olfactive) ;</text>
+      <span begin="151" end="223" id="2" />
+      <text id="2">Nécessité d'obtenir une viande saine pour des raisons de santé publique.</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_visuel" idSE="0">
+      <horizontale value="0" />
+      <verticale value="0" />
+      <navigationnelle value="0" />
+      <hypertextuelle value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_rhetorique" idSE="0">
+      <paradigmatique value="0" />
+      <syntagmatique value="0" />
+      <hybride value="0" />
+      <bivalente value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_intentionnel" idSE="0">
+      <descriptive value="0" />
+      <narrative value="0" />
+      <explicative value="0" />
+      <prescriptive value="0" />
+      <procedurale value="0" />
+      <argumentative value="0" />
+      <intentionnel_autre value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_semantique" idSE="0">
+      <visee_ontologique value="0">
+        <isA value="0" />
+        <partOf value="0" />
+        <instanceOf value="0" />
+        <ontologique_autre value="0" />
+      </visee_ontologique>
+      <metalinguistique value="0">
+        <hyperonymie value="0" />
+        <meronymie value="0" />
+        <homonymie value="0" />
+        <synonymie value="0" />
+        <multilingue value="0" />
+        <lexical_autre value="0" />
+      </metalinguistique>
+      <semantique_autre value="0" />
+      <contextuelle value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_visuel" idSE="1">
+      <horizontale value="0" />
+      <verticale value="0" />
+      <navigationnelle value="0" />
+      <hypertextuelle value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_rhetorique" idSE="1">
+      <paradigmatique value="0" />
+      <syntagmatique value="0" />
+      <hybride value="0" />
+      <bivalente value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_intentionnel" idSE="1">
+      <descriptive value="0" />
+      <narrative value="0" />
+      <explicative value="0" />
+      <prescriptive value="0" />
+      <procedurale value="0" />
+      <argumentative value="0" />
+      <intentionnel_autre value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>1</id>
+      <auteur>Sophie</auteur>
+      <date>26/04/14 13:08</date>
+      <document>Abattoir.html</document>
+    </metadata>
+    <SEval type="axe_semantique" idSE="1">
+      <visee_ontologique value="0">
+        <isA value="0" />
+        <partOf value="0" />
+        <instanceOf value="0" />
+        <ontologique_autre value="0" />
+      </visee_ontologique>
+      <metalinguistique value="0">
+        <hyperonymie value="0" />
+        <meronymie value="0" />
+        <homonymie value="0" />
+        <synonymie value="0" />
+        <multilingue value="0" />
+        <lexical_autre value="0" />
+      </metalinguistique>
+      <semantique_autre value="0" />
+      <contextuelle value="0" />
+    </SEval>
+  </annotation>
+</root>

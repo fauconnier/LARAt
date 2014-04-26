@@ -1,35 +1,20 @@
 package melodi.main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
-
-import melodi.tools.*;
 
 public class MIG_JPanel_Center extends JPanel {
 
@@ -115,7 +100,7 @@ public class MIG_JPanel_Center extends JPanel {
 		// Identification
 		JPanel buttonPanelUp = new JPanel(new GridBagLayout());
 
-		ImageIcon plusIcon = new ImageIcon("ressources/images/plus.png");
+		ImageIcon plusIcon = new ImageIcon("resources/images/plus.png");
 		addButton = new JButton(plusIcon);
 		addButton.setVerticalTextPosition(AbstractButton.CENTER);
 		addButton.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -123,21 +108,21 @@ public class MIG_JPanel_Center extends JPanel {
 		addButton.setMnemonic(KeyEvent.VK_D);
 		addButton.setActionCommand("addSE");
 
-		ImageIcon clearIcon = new ImageIcon("ressources/images/clear.png");
+		ImageIcon clearIcon = new ImageIcon("resources/images/clear.png");
 		clearButton = new JButton(clearIcon);
 		clearButton.setHorizontalTextPosition(AbstractButton.LEFT);
 		clearButton.setMnemonic(KeyEvent.VK_E);
 		clearButton.setActionCommand("clear");
 		clearButton.setEnabled(true);
 
-		ImageIcon verIcon = new ImageIcon("ressources/images/ver.png");
+		ImageIcon verIcon = new ImageIcon("resources/images/ver.png");
 		recButton = new JButton(verIcon);
 		recButton.setHorizontalTextPosition(AbstractButton.LEFT);
 		recButton.setMnemonic(KeyEvent.VK_E);
 		recButton.setActionCommand("rec");
 		recButton.setEnabled(true);
 
-		ImageIcon delIcon = new ImageIcon("ressources/images/croix.png");
+		ImageIcon delIcon = new ImageIcon("resources/images/croix.png");
 		delButton = new JButton(delIcon);
 		delButton.setHorizontalTextPosition(AbstractButton.LEFT);
 		delButton.setMnemonic(KeyEvent.VK_E);
@@ -157,7 +142,7 @@ public class MIG_JPanel_Center extends JPanel {
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		// Sélection
-		ImageIcon primerIcon = new ImageIcon("ressources/images/plus3.png");
+		ImageIcon primerIcon = new ImageIcon("resources/images/plus3.png");
 		addPrimer = new JButton(primerIcon);
 		addPrimer.setVerticalTextPosition(AbstractButton.CENTER);
 		addPrimer.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -165,7 +150,7 @@ public class MIG_JPanel_Center extends JPanel {
 		addPrimer.setMnemonic(KeyEvent.VK_D);
 		addPrimer.setActionCommand("addPrimer");
 
-		ImageIcon itemIcon = new ImageIcon("ressources/images/plus4.png");
+		ImageIcon itemIcon = new ImageIcon("resources/images/plus4.png");
 		addItem = new JButton(itemIcon);
 		addItem.setVerticalTextPosition(AbstractButton.CENTER);
 		addItem.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -174,7 +159,7 @@ public class MIG_JPanel_Center extends JPanel {
 		addItem.setActionCommand("addItem");
 
 		ImageIcon clearItemPrimerIcon = new ImageIcon(
-				"ressources/images/clear2.png");
+				"resources/images/clear2.png");
 		clearThis = new JButton(clearItemPrimerIcon);
 		clearThis.setVerticalTextPosition(AbstractButton.CENTER);
 		clearThis.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -182,7 +167,7 @@ public class MIG_JPanel_Center extends JPanel {
 		clearThis.setMnemonic(KeyEvent.VK_D);
 		clearThis.setActionCommand("clearAll");
 
-		ImageIcon imageIcon = new ImageIcon("ressources/images/clot.png");
+		ImageIcon imageIcon = new ImageIcon("resources/images/clot.png");
 		clotIcon = new JButton(imageIcon);
 		clotIcon.setVerticalTextPosition(AbstractButton.CENTER);
 		clotIcon.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -205,14 +190,14 @@ public class MIG_JPanel_Center extends JPanel {
 		
 		
 		// V2 : Selection Concepts/Circonstantants/Marqueurs
-		ImageIcon conceptIcon = new ImageIcon("ressources/images/addConcept.png");
+		ImageIcon conceptIcon = new ImageIcon("resources/images/addConcept.png");
 		addConcept = new JButton(conceptIcon);
 		addConcept.setVerticalTextPosition(AbstractButton.CENTER);
 		addConcept.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
 		addConcept.setMnemonic(KeyEvent.VK_D);
 		addConcept.setActionCommand("addConcept");
 
-		ImageIcon circonstantIcon = new ImageIcon("ressources/images/addCirc.png");
+		ImageIcon circonstantIcon = new ImageIcon("resources/images/addCirc.png");
 		addCirconstant = new JButton(circonstantIcon);
 		addCirconstant.setVerticalTextPosition(AbstractButton.CENTER);
 		addCirconstant.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
@@ -220,14 +205,14 @@ public class MIG_JPanel_Center extends JPanel {
 		addCirconstant.setActionCommand("addCirconstant");
 
 		ImageIcon switchIcon = new ImageIcon(
-				"ressources/images/switch.png");
+				"resources/images/switch.png");
 		switchView = new JButton(switchIcon);
 		switchView.setVerticalTextPosition(AbstractButton.CENTER);
 		switchView.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
 		switchView.setMnemonic(KeyEvent.VK_D);
 		switchView.setActionCommand("switch");
 
-		ImageIcon marqueurIcon = new ImageIcon("ressources/images/addMarq.png");
+		ImageIcon marqueurIcon = new ImageIcon("resources/images/addMarq.png");
 		addMarqRel = new JButton(marqueurIcon);
 		addMarqRel.setVerticalTextPosition(AbstractButton.CENTER);
 		addMarqRel.setHorizontalTextPosition(AbstractButton.RIGHT); // aka LEFT,
