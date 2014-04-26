@@ -53,9 +53,18 @@
 		<copy todir="${dist.dir}/resources/">
 			<fileset dir="resources" />
 		</copy>
-		<copy file="resources/properties/about.html" todir="${dist.dir}"/>
+		<copy todir="${dist.dir}/sample/">
+			<fileset dir="sample" />
+		</copy>
+			
+		<!-- packaging -->
+		<copy file="README" todir="${dist.dir}"/>
+		<copy file="LICENSE" todir="${dist.dir}"/>
+		<copy file="AUTHOR" todir="${dist.dir}"/>
+		<echo file="${dist.dir}/VERSION" append="true" message="Name:${application.title}${line.separator}Version:${application.version}${line.separator}Build:${TODAY_GB}"/>
+		<!-- <echo file="${dist.dir}/${application.title}_${application.version}.bat" append="true" message="java -jar ${application.title}_${application.version}.jar" /> -->
 		
-		<echo file="${dist.dir}/${application.title}_${application.version}.bat" append="true" message="java -jar ${application.version}_${TODAY_GB}.jar" />
+		<!-- create jar -->
 		<jar destfile="${dist.dir}/${application.title}_${application.version}.jar" basedir="${build.dir}">
 			<manifest>
 				<attribute name="Main-Class" value="${main.class}" />

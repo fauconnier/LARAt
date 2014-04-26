@@ -59,14 +59,14 @@ public class TestIO {
 			// annotationSE_jframe.pack();
 			annotationSE_jframe.setVisible(true);
 
-			mig_parent.document_path = "resources/test/Test_corpus/Abattoir.html";
+			mig_parent.document_path = "sample/Test_corpus/Abattoir.html";
 
 			mig_parent.removeXML();
 
 		} else {
 
 			this.mig_parent = new MIG_JPanel_Parent(null);
-			mig_parent.document_path = "resources/test/Test_corpus/Abattoir.html";
+			mig_parent.document_path = "sample/Test_corpus/Abattoir.html";
 
 			mig_parent.removeXML();
 		}
@@ -83,13 +83,10 @@ public class TestIO {
 
 	@Test
 	public void testSuite() {
-		// ouver un document
 		openADocument();
 		if (visible)
 			wait(test);
 
-		// Ajoute une SE de 10 à 50
-		// Vérifie que la Chaîne compte bien 1 élément
 		addSE(4440, 4662, 1);
 		if (visible)
 			wait(test);
@@ -98,7 +95,6 @@ public class TestIO {
 			wait(test);
 		testSort(2606);
 
-		// SE, itemID, begin, end
 		addPrimer(0, 1, 26);
 		if (visible)
 			wait(test);
@@ -116,12 +112,9 @@ public class TestIO {
 			wait(test);
 		addItem(0, 4, 201, 244);
 
-		// Vérifie l'ordre des items
-		// 0 car au chargement c'est une nouveau doc vide.
 		recTest(0, 0, 27, 200);
 		recTest(0, 2, 245, 287);
 
-		// Deuxième SE
 		if (visible)
 			wait(test);
 		addPrimer(1, 1, 23);
@@ -140,45 +133,30 @@ public class TestIO {
 
 		if (visible)
 			runAndwait();
-		// SE 3
-		// addItem(2, 0, 24, 89);
-		// recTest(2, 0, 24, 89);
 
 	}
 
 	public void runAndwait() {
 
-		// Turn off metal's use of bold fonts
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 
 		MIG_JFrame annotationSE_jframe = new MIG_JFrame("MIG Interface");
 		MIG_JPanel_Parent mig = new MIG_JPanel_Parent(annotationSE_jframe);
 		mig.addMenu();
-		// ImageIcon leftButtonIcon = new ImageIcon("images/star.png");
-		// annotationSE_jframe.setIconImage(leftButtonIcon.getImage());
-
 		annotationSE_jframe.setDefaultCloseOperation(MIG_JFrame.EXIT_ON_CLOSE);
-		annotationSE_jframe.setSize(1024, 768); // On donne une taille à notre
-												// fenêtre
+		annotationSE_jframe.setSize(1024, 768); 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
 		Point newLocation = new Point(middle.x
 				- (annotationSE_jframe.getWidth() / 2), middle.y
 				- (annotationSE_jframe.getHeight() / 2));
-		annotationSE_jframe.setLocation(newLocation); // On centre la fenêtre
-														// sur l'écran
-		annotationSE_jframe.setResizable(true); // On interdit la
-												// redimensionnement de la
-												// fenêtre
-
-		// Add content to the window.
+		annotationSE_jframe.setLocation(newLocation); 
+		annotationSE_jframe.setResizable(true); 
 
 		annotationSE_jframe.add(mig);
 
-		// Display the window.
-		// annotationSE_jframe.pack();
 		annotationSE_jframe.setVisible(true);
-		mig.document_path = "ressources/test/corpus/Abattoir.html";
+		mig.document_path = "sample/corpus/Abattoir.html";
 		mig.initDoc();
 		wait(500);
 
@@ -196,23 +174,6 @@ public class TestIO {
 
 	}
 
-	// private void afficheDocument(){
-	//
-	// HashMap<SE, HTMLDocument> hash_doc = mig_parent.hashSE_Doc;
-	//
-	// for (SE seKey : hash_doc.keySet()) {
-	// try {
-	// System.out.println(hash_doc.get(seKey).getText(0,
-	// hash_doc.get(seKey).getLength()));
-	// } catch (BadLocationException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// System.out.println("Fin");
-	//
-	// }
-
 	private void openADocument() {
 		int length_of_document = mig_parent.initDoc();
 		Assert.assertEquals(23637, length_of_document);
@@ -227,7 +188,6 @@ public class TestIO {
 			mig_parent.current_selection_textPane = mig_parent.textPane
 					.getText(a, b - a);
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -259,10 +219,6 @@ public class TestIO {
 	private void addPrimer(int indexSE, int deb, int fin) {
 		mig_parent.current_SE = mig_parent.chain_SE.get(indexSE);
 		mig_parent.init();
-		// System.out.println("current_SE deb : "+
-		// mig_parent.current_SE.getIndice_begin());
-		// System.out.println("current_SE end : "+
-		// mig_parent.current_SE.getIndice_end());
 		mig_parent.deb_current_selection_SEPane = deb;
 		mig_parent.fin_current_selection_SEPane = fin;
 
@@ -304,8 +260,6 @@ public class TestIO {
 
 		MIG_JPanel_Parent newMIG = new MIG_JPanel_Parent(null);
 		newMIG.document_path = document_pathExpected;
-		// newMIG.initDoc();
-
 		Assert.assertEquals(23637, newMIG.initDoc());
 
 		String name = newMIG.document_name;
