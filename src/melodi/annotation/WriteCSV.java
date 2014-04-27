@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import melodi.internal.SE;
-import melodi.main.IO_MIG;
+import melodi.model.Larat_inputoutput;
 import au.com.bytecode.opencsv.*;
 
 public class WriteCSV {
@@ -21,15 +21,15 @@ public class WriteCSV {
 		String doc_m_jp = "./annotation/Phase_2/M_Jp/LARA_xml/Menhir.xml";
 		
 		// Ouvrir les fichiers d'annotation [okay]
-		IO_MIG io_julien = new IO_MIG();
+		Larat_inputoutput io_julien = new Larat_inputoutput();
 		io_julien.readThis(doc_julien);
 		LinkedList<SE>	chain_julien = io_julien.getChain();
 		
-		IO_MIG io_sophie = new IO_MIG();
+		Larat_inputoutput io_sophie = new Larat_inputoutput();
 		io_sophie.readThis(doc_sophie);
 		LinkedList<SE> chain_sophie = io_sophie.getChain();
 		
-		IO_MIG io_m_jp = new IO_MIG();
+		Larat_inputoutput io_m_jp = new Larat_inputoutput();
 		io_m_jp.readThis(doc_m_jp);
 		LinkedList<SE> chain_m_jp = io_m_jp.getChain();
 		

@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
-import melodi.internal.SE;
-import melodi.main.IO_MIG;
+import melodi.internal.*;
+import melodi.model.Larat_inputoutput;
+
 import javax.swing.*;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -62,13 +63,13 @@ public class MainPlotAnnotation extends JFrame {
 		// getNameDoc
 		String currFileDoc = "/home/jfaucon/Thesis/Data/LARA_phase1/Julien/LARA_corpus/"
 				+ doc + ".html";
-		IO_MIG io_LARAt_app = new IO_MIG();
+		Larat_inputoutput io_LARAt_app = new Larat_inputoutput();
 		io_LARAt_app.readThis(currFileDoc);
 		LinkedList<SE> a2_SE_ll = io_LARAt_app.getChain();
 
 		String currFileDoc2 = "/home/jfaucon/Thesis/Data/LARA_phase1/Sophie/LARA_corpus/"
 				+ doc + ".html";
-		IO_MIG io_LARAt_app2 = new IO_MIG();
+		Larat_inputoutput io_LARAt_app2 = new Larat_inputoutput();
 		io_LARAt_app2.readThis(currFileDoc2);
 		LinkedList<SE> a3_SE_ll = io_LARAt_app2.getChain();
 

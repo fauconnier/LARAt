@@ -41,8 +41,7 @@ import javax.swing.table.DefaultTableModel;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import melodi.internal.SE;
-import melodi.main.MIG_JFrame;
-import melodi.main.MIG_JPanel_Parent;
+import melodi.view.Larat_ParentPanel;
 
 public class PlotAnnotation extends JFrame {
 

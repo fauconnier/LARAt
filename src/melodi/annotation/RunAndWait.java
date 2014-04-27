@@ -4,26 +4,26 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import melodi.main.MIG_JFrame;
-import melodi.main.MIG_JPanel_Parent;
+import melodi.view.Larat_ParentPanel;
 
 public class RunAndWait {
-	MIG_JPanel_Parent mig;
+	Larat_ParentPanel mig;
 	
 	
 	public RunAndWait(String doc, String phase, String annotateur,int index_doc){
 		// Turn off metal's use of bold fonts
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 
-		MIG_JFrame annotationSE_jframe = new MIG_JFrame(annotateur);
-	    this.mig = new MIG_JPanel_Parent(annotationSE_jframe);
+		JFrame annotationSE_jframe = new JFrame(annotateur);
+	    this.mig = new Larat_ParentPanel();
 		mig.addMenu();
 		// ImageIcon leftButtonIcon = new ImageIcon("images/star.png");
 		// annotationSE_jframe.setIconImage(leftButtonIcon.getImage());
 
-		annotationSE_jframe.setDefaultCloseOperation(MIG_JFrame.EXIT_ON_CLOSE);
+		annotationSE_jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		annotationSE_jframe.setSize(1024, 768); // On donne une taille à notre
 												// fenêtre
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

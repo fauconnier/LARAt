@@ -1,4 +1,4 @@
-package melodi.tools;
+package melodi.atools;
 
 import java.util.Comparator;
 

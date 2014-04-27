@@ -3,26 +3,21 @@ package melodi.srcTest;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.swing.SwingUtilities;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.html.HTMLDocument;
 
-import melodi.internal.Item;
 import melodi.internal.SE;
-import melodi.main.MIG_JFrame;
-import melodi.main.MIG_JPanel_Parent;
+import melodi.view.Larat_ParentPanel;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestIO {
 
-	MIG_JPanel_Parent mig_parent;
+	Larat_ParentPanel mig_parent;
 	boolean visible = true;
 	int test = 100;
 	int test2 = 100;
@@ -35,14 +30,14 @@ public class TestIO {
 		if (visible) {
 
 			UIManager.put("swing.boldMetal", Boolean.FALSE);
-			MIG_JFrame annotationSE_jframe = new MIG_JFrame("MIG Interface");
-			this.mig_parent = new MIG_JPanel_Parent(annotationSE_jframe);
+			JFrame annotationSE_jframe = new JFrame("Test version");
+			this.mig_parent = new Larat_ParentPanel(annotationSE_jframe);
 
 			mig_parent.addMenu();
 			// ImageIcon leftButtonIcon = new ImageIcon("images/star.png");
 			// annotationSE_jframe.setIconImage(leftButtonIcon.getImage());
 			annotationSE_jframe
-					.setDefaultCloseOperation(MIG_JFrame.EXIT_ON_CLOSE);
+					.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			annotationSE_jframe.setSize(1024, 768); // On donne une taille à
 			annotationSE_jframe.setLocationRelativeTo(null); // On centre la
 																// fenêtre sur
@@ -65,7 +60,7 @@ public class TestIO {
 
 		} else {
 
-			this.mig_parent = new MIG_JPanel_Parent(null);
+			this.mig_parent = new Larat_ParentPanel(null);
 			mig_parent.document_path = "sample/Test_corpus/Abattoir.html";
 
 			mig_parent.removeXML();
@@ -140,10 +135,10 @@ public class TestIO {
 
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 
-		MIG_JFrame annotationSE_jframe = new MIG_JFrame("MIG Interface");
-		MIG_JPanel_Parent mig = new MIG_JPanel_Parent(annotationSE_jframe);
+		JFrame annotationSE_jframe = new JFrame("Test version");
+		Larat_ParentPanel mig = new Larat_ParentPanel(annotationSE_jframe);
 		mig.addMenu();
-		annotationSE_jframe.setDefaultCloseOperation(MIG_JFrame.EXIT_ON_CLOSE);
+		annotationSE_jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		annotationSE_jframe.setSize(1024, 768); 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
@@ -258,7 +253,7 @@ public class TestIO {
 		String document_pathExpected = mig_parent.document_path;
 		mig_parent.actionPerformedValid();
 
-		MIG_JPanel_Parent newMIG = new MIG_JPanel_Parent(null);
+		Larat_ParentPanel newMIG = new Larat_ParentPanel(null);
 		newMIG.document_path = document_pathExpected;
 		Assert.assertEquals(23637, newMIG.initDoc());
 

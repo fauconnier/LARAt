@@ -1,4 +1,4 @@
-package melodi.main;
+package melodi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
+
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,17 +19,22 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextPane;
 import javax.swing.text.html.HTMLDocument;
 
+import melodi.view.listener.Listener_RightButtons;
+import melodi.zcontroler.LaratControler;
 
-public class MIG_JPanel_Right extends JPanel  {
+
+public class Larat_RightPanel extends JPanel  {
 	
-	public MIG_JPanel_Parent mig;
+	public JLabel annotation_id;
 	public JLabel SE_int;
-	public JLabel Chain_SE_size;
-	public MIG_JTextPane alignPane;
+	public JLabel annotation_set_size;
+//	public JTextPane alignPane;
 	public HTMLDocument htmlDocTextPane;
 	
+	Listener_RightButtons rightButtonsListener;
 	/**
 	 * Pane
 	 */
@@ -39,8 +45,8 @@ public class MIG_JPanel_Right extends JPanel  {
 	
 	public JButton previousButton;
 	public JButton nextButton;
-	public JLabel SE_id_in_chain;
-	public JLabel chain_SE_size;
+//	public JLabel SE_id_in_chain;
+//	public JLabel chain_SE_size;
 	/**
 	 * Visuel
 	 */
@@ -96,12 +102,10 @@ public class MIG_JPanel_Right extends JPanel  {
 	public JRadioButton contextuelle;
 	public JRadioButton non_contextuelle;
 
-	public MIG_JPanel_Right(MIG_JPanel_Parent mig, JLabel SE_id_in_chain, JLabel chain_SE_size) {
+	public Larat_RightPanel(LaratControler controler) {
 		
 		
-		this.mig = mig;
-		this.SE_id_in_chain = SE_id_in_chain;
-		this.chain_SE_size = chain_SE_size;
+		this.rightButtonsListener = new Listener_RightButtons(controler);
 		/*
 		 * Rigth
 		 */
@@ -122,25 +126,25 @@ public class MIG_JPanel_Right extends JPanel  {
 		verticaleJRadio = new JRadioButton("verticale");
 		verticaleJRadio.setMnemonic(KeyEvent.VK_C);
 		verticaleJRadio.setSelected(false);
-		verticaleJRadio.addActionListener(mig);
+		verticaleJRadio.addActionListener(rightButtonsListener);
 		verticaleJRadio.setActionCommand("vertical");
 
 		horizontaleJRadio = new JRadioButton("horizontale");
 		horizontaleJRadio.setMnemonic(KeyEvent.VK_G);
 		horizontaleJRadio.setSelected(false);
-		horizontaleJRadio.addActionListener(mig);
+		horizontaleJRadio.addActionListener(rightButtonsListener);
 		horizontaleJRadio.setActionCommand("horizon");
 
 		hypertextualJRadio = new JRadioButton("hypertextuelle");
 		hypertextualJRadio.setMnemonic(KeyEvent.VK_G);
 		hypertextualJRadio.setSelected(false);
-		hypertextualJRadio.addActionListener(mig);
+		hypertextualJRadio.addActionListener(rightButtonsListener);
 		hypertextualJRadio.setActionCommand("hypertextual");
 
 		navigationnelJRadio = new JRadioButton("navigationnelle");
 		navigationnelJRadio.setMnemonic(KeyEvent.VK_G);
 		navigationnelJRadio.setSelected(false);
-		navigationnelJRadio.addActionListener(mig);
+		navigationnelJRadio.addActionListener(rightButtonsListener);
 		navigationnelJRadio.setActionCommand("navigationnelle");
 
 		axe_visuel.add(verticaleJRadio);
@@ -163,25 +167,25 @@ public class MIG_JPanel_Right extends JPanel  {
 		paradigmatique = new JRadioButton("Paradigmatique");
 		paradigmatique.setMnemonic(KeyEvent.VK_C);
 		paradigmatique.setSelected(false);
-		paradigmatique.addActionListener(mig);
+		paradigmatique.addActionListener(rightButtonsListener);
 		paradigmatique.setActionCommand("paradigmatique");
 		
 		syntagmatique = new JRadioButton("Syntagmatique");
 		syntagmatique.setMnemonic(KeyEvent.VK_C);
 		syntagmatique.setSelected(false);
-		syntagmatique.addActionListener(mig);
+		syntagmatique.addActionListener(rightButtonsListener);
 		syntagmatique.setActionCommand("syntagmatique");
 		
 		hybride = new JRadioButton("Hybride");
 		hybride.setMnemonic(KeyEvent.VK_C);
 		hybride.setSelected(false);
-		hybride.addActionListener(mig);
+		hybride.addActionListener(rightButtonsListener);
 		hybride.setActionCommand("hybride");
 		
 		bivalente = new JRadioButton("Bivalente");
 		bivalente.setMnemonic(KeyEvent.VK_C);
 		bivalente.setSelected(false);
-		bivalente.addActionListener(mig);
+		bivalente.addActionListener(rightButtonsListener);
 		bivalente.setActionCommand("bivalente");
 		
 		axe_rhetorique.add(paradigmatique);
@@ -201,43 +205,43 @@ public class MIG_JPanel_Right extends JPanel  {
 		descriptive = new JRadioButton("descriptive");
 		descriptive.setMnemonic(KeyEvent.VK_C);
 		descriptive.setSelected(false);
-		descriptive.addActionListener(mig);
+		descriptive.addActionListener(rightButtonsListener);
 		descriptive.setActionCommand("descriptive");
 		
 		narrative = new JRadioButton("narrative");
 		narrative.setMnemonic(KeyEvent.VK_C);
 		narrative.setSelected(false);
-		narrative.addActionListener(mig);
+		narrative.addActionListener(rightButtonsListener);
 		narrative.setActionCommand("narrative");
 		
 		explicative = new JRadioButton("explicative ");
 		explicative .setMnemonic(KeyEvent.VK_C);
 		explicative .setSelected(false);
-		explicative .addActionListener(mig);
+		explicative .addActionListener(rightButtonsListener);
 		explicative .setActionCommand("explicative");
 		
 		prescriptive = new JRadioButton("prescriptive");
 		prescriptive.setMnemonic(KeyEvent.VK_C);
 		prescriptive.setSelected(false);
-		prescriptive.addActionListener(mig);
+		prescriptive.addActionListener(rightButtonsListener);
 		prescriptive.setActionCommand("prescriptive");
 		
 		procedurale = new JRadioButton("procedurale");
 		procedurale .setMnemonic(KeyEvent.VK_C);
 		procedurale .setSelected(false);
-		procedurale .addActionListener(mig);
+		procedurale .addActionListener(rightButtonsListener);
 		procedurale .setActionCommand("procedurale");
 		
 		argumentative = new JRadioButton("argumentative");
 		argumentative .setMnemonic(KeyEvent.VK_C);
 		argumentative .setSelected(false);
-		argumentative .addActionListener(mig);
+		argumentative .addActionListener(rightButtonsListener);
 		argumentative.setActionCommand("argumentative");
 		
 		autre_intentionnel = new JRadioButton("autre intent.");
 		autre_intentionnel.setMnemonic(KeyEvent.VK_C);
 		autre_intentionnel .setSelected(false);
-		autre_intentionnel .addActionListener(mig);
+		autre_intentionnel .addActionListener(rightButtonsListener);
 		autre_intentionnel.setActionCommand("autre_intentionnel");
 		
 		// descriptive, narrative, explicative, prescriptive, procédurale, argumentative
@@ -286,25 +290,25 @@ public class MIG_JPanel_Right extends JPanel  {
 		isA = new JRadioButton("isA");
 		isA .setMnemonic(KeyEvent.VK_C);
 		isA .setSelected(false);
-		isA .addActionListener(mig);
+		isA .addActionListener(rightButtonsListener);
 		isA.setActionCommand("isA");
 		
 		partOf = new JRadioButton("partOf");
 		partOf.setMnemonic(KeyEvent.VK_C);
 		partOf.setSelected(false);
-		partOf.addActionListener(mig);
+		partOf.addActionListener(rightButtonsListener);
 		partOf.setActionCommand("partOf");
 		
 		instanceOf = new JRadioButton("instanceOf");
 		instanceOf.setMnemonic(KeyEvent.VK_C);
 		instanceOf.setSelected(false);
-		instanceOf.addActionListener(mig);
+		instanceOf.addActionListener(rightButtonsListener);
 		instanceOf.setActionCommand("instanceOf");
 		
 		ontologiqueAutre = new JRadioButton("ontologiqueAutre");
 		ontologiqueAutre.setMnemonic(KeyEvent.VK_C);
 		ontologiqueAutre.setSelected(false);
-		ontologiqueAutre.addActionListener(mig);
+		ontologiqueAutre.addActionListener(rightButtonsListener);
 		ontologiqueAutre.setActionCommand("ontologiqueAutre");
 		
 		visee_ontologique.add(isA);
@@ -322,37 +326,37 @@ public class MIG_JPanel_Right extends JPanel  {
 		hyperonymie = new JRadioButton("hyperonymie");
 		hyperonymie .setMnemonic(KeyEvent.VK_C);
 		hyperonymie .setSelected(false);
-		hyperonymie.addActionListener(mig);
+		hyperonymie.addActionListener(rightButtonsListener);
 		hyperonymie.setActionCommand("hyperonymie");
 		
 		meronymie = new JRadioButton("meronymie");
 		meronymie .setMnemonic(KeyEvent.VK_C);
 		meronymie .setSelected(false);
-		meronymie.addActionListener(mig);
+		meronymie.addActionListener(rightButtonsListener);
 		meronymie.setActionCommand("meronymie");
 		
 		homonymie = new JRadioButton("homonymie");
 		homonymie .setMnemonic(KeyEvent.VK_C);
 		homonymie .setSelected(false);
-		homonymie.addActionListener(mig);
+		homonymie.addActionListener(rightButtonsListener);
 		homonymie.setActionCommand("homonymie");
 		
 		synonymie = new JRadioButton("synonymie");
 		synonymie .setMnemonic(KeyEvent.VK_C);
 		synonymie .setSelected(false);
-		synonymie.addActionListener(mig);
+		synonymie.addActionListener(rightButtonsListener);
 		synonymie.setActionCommand("synonymie");
 		
 		multilingue  = new JRadioButton("multilingue");
 		multilingue .setMnemonic(KeyEvent.VK_C);
 		multilingue .setSelected(false);
-		multilingue.addActionListener(mig);
+		multilingue.addActionListener(rightButtonsListener);
 		multilingue.setActionCommand("multilingue");
 		
 		lexicalAutre = new JRadioButton("lexicalAutre");
 		lexicalAutre  .setMnemonic(KeyEvent.VK_C);
 		lexicalAutre  .setSelected(false);
-		lexicalAutre .addActionListener(mig);
+		lexicalAutre .addActionListener(rightButtonsListener);
 		lexicalAutre .setActionCommand("lexicalAutre");
 		
 		metalinguistique.add(hyperonymie);
@@ -388,7 +392,7 @@ public class MIG_JPanel_Right extends JPanel  {
 		semantiqueAutre = new JRadioButton("semantiqueAutre");
 		semantiqueAutre  .setMnemonic(KeyEvent.VK_C);
 		semantiqueAutre  .setSelected(false);
-		semantiqueAutre .addActionListener(mig);
+		semantiqueAutre .addActionListener(rightButtonsListener);
 		semantiqueAutre.setActionCommand("semantiqueAutre");
 		
 		autre_semantique.add(semantiqueAutre);
@@ -406,13 +410,13 @@ public class MIG_JPanel_Right extends JPanel  {
 		contextuelle = new JRadioButton("contextuelle");
 		contextuelle .setMnemonic(KeyEvent.VK_C);
 		contextuelle  .setSelected(false);
-		contextuelle .addActionListener(mig);
+		contextuelle .addActionListener(rightButtonsListener);
 		contextuelle.setActionCommand("contextuelle");
 		
 		non_contextuelle = new JRadioButton("non contextuelle");
 		non_contextuelle .setMnemonic(KeyEvent.VK_C);
 		non_contextuelle  .setSelected(false);
-		non_contextuelle .addActionListener(mig);
+		non_contextuelle .addActionListener(rightButtonsListener);
 		non_contextuelle.setActionCommand("non_contextuelle");
 		
 		contextuel.add(contextuelle);
@@ -439,7 +443,7 @@ public class MIG_JPanel_Right extends JPanel  {
 		valid.setActionCommand("valid");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.CENTER;
-		valid.addActionListener(mig);
+		valid.addActionListener(rightButtonsListener);
 		validPane.add(valid, gbc);
 
 		JPanel commentPane = new JPanel(new GridLayout(0, 1));
@@ -472,17 +476,17 @@ public class MIG_JPanel_Right extends JPanel  {
 		// 2.1 Information
 		JPanel information = new JPanel(new GridBagLayout());
 
-		setDetailsPanel(information);
+//		setDetailsPanel(information);
 
 		JPanel details = new JPanel();
 		details.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Détails"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-		SE_id_in_chain = new JLabel("SE id : 0");
-		details.add(SE_id_in_chain);
-		chain_SE_size = new JLabel("SE chain: 0");
-		details.add(chain_SE_size);
+		annotation_id = new JLabel("SE id : 0");
+		details.add(annotation_id);
+		annotation_set_size = new JLabel("SE chain: 0");
+//		details.add(chain_SE_size);
 		JPanel bottom = new JPanel(new GridLayout(0, 1));
 		bottom.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Contrôle"),
@@ -508,11 +512,6 @@ public class MIG_JPanel_Right extends JPanel  {
 	
 	
 	public void setDetailsPanel(JPanel mainFrame) {
-		/* 2- Cr�ation et initialisation d'une s�rie de composants. */
-		// JLabel photoLabel = new JLabel("photo");
-		// photoLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		// photoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		// photoLabel.setPreferredSize(new Dimension(75, 100));
 		ImageIcon leftButtonIcon = new ImageIcon("resources/images/left.gif");
 		ImageIcon rightButtonIcon = new ImageIcon("resources/images/right.gif");
 		previousButton = new JButton("SE Prec.", leftButtonIcon);
@@ -532,8 +531,8 @@ public class MIG_JPanel_Right extends JPanel  {
 		nextButton.setEnabled(false);
 
 		// Listen for actions on buttons 1 and 3.
-		previousButton.addActionListener(mig);
-		nextButton.addActionListener(mig);
+		previousButton.addActionListener(rightButtonsListener);
+		nextButton.addActionListener(rightButtonsListener);
 
 		previousButton.setToolTipText("Retourner à la SE précédente.");
 		nextButton.setToolTipText("Avancer à la SE suivante.");
@@ -591,19 +590,12 @@ public class MIG_JPanel_Right extends JPanel  {
 
 		/* c- �tiquette contenant le nom. */
 		gbc.gridx = gbc.gridy = gbc.gridwidth = gbc.gridheight = 1;
-		/*
-		 * L'�tiquette avec le nom sera align�e sur la ligne de base avec le
-		 * champ de saisie pour le nom.
-		 */
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 5, 0, 0);
 		mainFrame.add(nomLabel, gbc);
-		/* ************************************************************************************** */
-
-		/* d- le champs de saisie pour le nom. */
 		gbc.gridx = 2;
 		gbc.gridy = 1;
-		gbc.gridwidth = GridBagConstraints.REMAINDER; // dernier composant de la
+		gbc.gridwidth = GridBagConstraints.REMAINDER; 
 														// ligne.
 		gbc.fill = GridBagConstraints.HORIZONTAL; // �talons le sur l'espace
 													// disponible.
@@ -612,10 +604,8 @@ public class MIG_JPanel_Right extends JPanel  {
 		gbc.anchor = GridBagConstraints.BASELINE; // alignons le sur la m�me
 													// ligne de base que son
 													// �tiquette.
-		mainFrame.add(SE_id_in_chain, gbc);
-		/* ************************************************************************************** */
+		mainFrame.add(annotation_id, gbc);
 
-		/* e- l'�tiquette pour le pr�nom. */
 		gbc.gridx = gbc.gridwidth = gbc.gridheight = 1;
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.NONE;
@@ -623,52 +613,14 @@ public class MIG_JPanel_Right extends JPanel  {
 		gbc.insets = new Insets(0, 5, 0, 0);
 		mainFrame.add(prenomLabel, gbc);
 
-		/* ************************************************************************************** */
 
-		/* f- le champ de saisie pour le pr�nom */
 		gbc.gridx = gbc.gridy = 2;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(3, 5, 0, 5);
-		mainFrame.add(chain_SE_size, gbc);
-		/* ************************************************************************************** */
+		mainFrame.add(annotation_set_size, gbc);
 
-		// /* e- nombre de SE total */
-		// gbc.gridx = gbc.gridwidth = gbc.gridheight = 1;
-		// gbc.gridy = 3;
-		// gbc.fill = GridBagConstraints.NONE;
-		// gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		// gbc.insets = new Insets(0, 5, 0, 0);
-		// mainFrame.add(nbSE, gbc);
-		//
-		//
-		//
-		// /*
-		// **************************************************************************************
-		// */
-		//
-		// /* f- nombre de trus */
-		// gbc.gridx = 3;
-		// gbc.gridy = 3;
-		// gbc.gridwidth = GridBagConstraints.NONE;
-		// gbc.fill = GridBagConstraints.HORIZONTAL;
-		// gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		// gbc.insets = new Insets(3, 5, 0, 5);
-		// mainFrame.add(totalSE, gbc);
-		//
-		//
-		//
-		// gbc.gridy = 4;
-		// gbc.gridx = 0;
-		// gbc.anchor = GridBagConstraints.CENTER;
-		// gbc.fill = GridBagConstraints.HORIZONTAL;
-		// gbc.insets = new Insets(3, 5, 0, 5);
-		// mainFrame.add(separator, gbc);
-
-		/* ************************************************************************************** */
-
-		/* g- l'�tiquette pour la fonction. */
 		gbc.gridx = gbc.gridwidth = gbc.gridheight = 1;
 		gbc.gridy = 4;
 		gbc.fill = GridBagConstraints.NONE;

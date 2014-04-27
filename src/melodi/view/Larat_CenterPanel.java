@@ -1,4 +1,4 @@
-package melodi.main;
+package melodi.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -15,8 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTextPane;
 
-public class MIG_JPanel_Center extends JPanel {
+import melodi.view.listener.Listener_CenterButtons;
+import melodi.view.listener.Listener_CenterTextPane;
+import melodi.zcontroler.LaratControler;
+
+
+public class Larat_CenterPanel extends JPanel {
 
 	/**
 	 * Contrôle SE
@@ -56,35 +62,32 @@ public class MIG_JPanel_Center extends JPanel {
 	public JLabel axe_sem_info;
 
 
-
-	public MIG_JTextPane SEPane;
+	public JTextPane centerTextPane;
+	
+	
 	private static final long serialVersionUID = 1L;
-	public MIG_JPanel_Parent mig;
 
-	public void setNewPane(MIG_JTextPane SEPane) {
-		this.SEPane = SEPane;
+	public void setNewPane(JTextPane SEPane) {
+		this.centerTextPane = SEPane;
 	}
 
-	public MIG_JPanel_Center(MIG_JPanel_Parent mig, MIG_JTextPane SEPane) {
+	public Larat_CenterPanel(LaratControler controler) {
 
-		this.mig = mig;
-		this.SEPane = SEPane;
+		Listener_CenterButtons centerButtonsListener = new Listener_CenterButtons(controler);
+		
+		centerTextPane = new JTextPane();
+		Listener_CenterTextPane centerTextPaneListener = new Listener_CenterTextPane(centerTextPane, controler);
+		centerTextPane.addCaretListener(centerTextPaneListener);
+		centerTextPane.addMouseListener(centerTextPaneListener);
+		
 		this.setLayout(new BorderLayout());
 
+		centerTextPane.setContentType("text/html");
 
-		/**
-		 * UP
-		 */
-		// Create an editor pane.
-		SEPane.setContentType("text/html");
-		SEPane.addCaretListener(mig);
-		SEPane.addMouseListener(mig);
-
-		SEPane.setEditable(false);
-		JScrollPane editorScrollPane = new JScrollPane(SEPane);
+		centerTextPane.setEditable(false);
+		JScrollPane editorScrollPane = new JScrollPane(centerTextPane);
 		editorScrollPane
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// editorScrollPane.setPreferredSize(new Dimension(250, 155));
 
 		JPanel centerUp = new JPanel(new BorderLayout());
 		centerUp.add(editorScrollPane);
@@ -128,12 +131,13 @@ public class MIG_JPanel_Center extends JPanel {
 		delButton.setMnemonic(KeyEvent.VK_E);
 		delButton.setActionCommand("del");
 		delButton.setEnabled(true);
+		
 
 		// Listen for actions on buttons 1 and 3.
-		clearButton.addActionListener(mig);
-		addButton.addActionListener(mig);
-		recButton.addActionListener(mig);
-		delButton.addActionListener(mig);
+		clearButton.addActionListener(centerButtonsListener);
+		addButton.addActionListener(centerButtonsListener);
+		recButton.addActionListener(centerButtonsListener);
+		delButton.addActionListener(centerButtonsListener);
 
 		selectSE(buttonPanelUp, addButton, clearButton, recButton, delButton);
 
@@ -175,10 +179,10 @@ public class MIG_JPanel_Center extends JPanel {
 		clotIcon.setMnemonic(KeyEvent.VK_D);
 		clotIcon.setActionCommand("cloture");
 
-		addPrimer.addActionListener(mig);
-		addItem.addActionListener(mig);
-		clearThis.addActionListener(mig);
-		clotIcon.addActionListener(mig);
+		addPrimer.addActionListener(centerButtonsListener);
+		addItem.addActionListener(centerButtonsListener);
+		clearThis.addActionListener(centerButtonsListener);
+		clotIcon.addActionListener(centerButtonsListener);
 
 		JPanel buttonPanelUp2 = new JPanel(new GridBagLayout());
 		buttonPanelUp2.setBorder(BorderFactory.createCompoundBorder(
@@ -219,10 +223,10 @@ public class MIG_JPanel_Center extends JPanel {
 		addMarqRel.setMnemonic(KeyEvent.VK_D);
 		addMarqRel.setActionCommand("addMarqRel");
 
-		addConcept.addActionListener(mig);
-		addCirconstant.addActionListener(mig);
-		switchView.addActionListener(mig);
-		addMarqRel.addActionListener(mig);
+		addConcept.addActionListener(centerButtonsListener);
+		addCirconstant.addActionListener(centerButtonsListener);
+		switchView.addActionListener(centerButtonsListener);
+		addMarqRel.addActionListener(centerButtonsListener);
 
 		JPanel buttonPanelUp3 = new JPanel(new GridBagLayout());
 		buttonPanelUp3.setBorder(BorderFactory.createCompoundBorder(
@@ -230,18 +234,8 @@ public class MIG_JPanel_Center extends JPanel {
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		select2SE(buttonPanelUp3, addConcept, addCirconstant, switchView, addMarqRel);
 		
-		
-
-		// Put all Together (Everybody need somebody)
 		buttonPane.add(buttonPanelUp);
 		buttonPane.add(buttonPanelUp2);
-//		buttonPane.add(buttonPanelUp3);
-		// buttonPane.add(buttonPanelMidle);
-
-		// buttonPane.setBorder(BorderFactory.createCompoundBorder(
-		// BorderFactory.createTitledBorder("Contrôle"),
-		// BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-
 		centerMiddle.add(buttonPane, BorderLayout.CENTER);
 
 		
@@ -293,31 +287,14 @@ public class MIG_JPanel_Center extends JPanel {
 				BorderFactory.createTitledBorder("Contrôle"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-		// Add Components to this container, using the default FlowLayout.
 		bottom.add(information);
 
-		// Add.
-		// controlBox.add(checkBoxRelation, BorderLayout.NORTH);
-//		centerBottom.add(bottom, BorderLayout.CENTER);
-
-		// this.add(controlBox);
-		// this.setBorder(BorderFactory.createCompoundBorder(
-		// BorderFactory.createTitledBorder("Structure énumérative"),
-		// BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-
-		// Put together!
-		
-//		this.add();
 		
 		JSplitPane jsp1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 				centerUp, centerMiddle);
 		jsp1.setOneTouchExpandable(true);
 
 		this.add(jsp1);
-//		JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, centerUp,
-//				jsp1);
-//		jsp2.setOneTouchExpandable(true);
-//		this.add(jsp2);
 
 		int iSliderPos = 99;
 		((JSplitPane) jsp1).setDividerSize(6);
@@ -326,12 +303,6 @@ public class MIG_JPanel_Center extends JPanel {
 																	// IMPORTANT!!!
 		((JSplitPane) jsp1).setDividerLocation((iSliderPos * 0.01));
 
-//		int iSliderPosBottom = 99;
-//		((JSplitPane) jsp2).setDividerSize(6);
-//		((JSplitPane) jsp2).setContinuousLayout(true);
-//		((JSplitPane) jsp2).setResizeWeight((iSliderPosBottom * 0.01)); // VERY
-//																		// IMPORTANT!!!
-//		((JSplitPane) jsp2).setDividerLocation((iSliderPosBottom * 0.01));
 	}
 
 	public static void select3SE(JPanel mainFrame, JButton button1) {

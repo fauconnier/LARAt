@@ -1,4 +1,4 @@
-package melodi.main;
+package melodi.model;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,13 +20,15 @@ import melodi.internal.MarqueurRelation;
 import melodi.internal.Primer;
 import melodi.internal.SE;
 import melodi.internal.Segment;
+import melodi.view.Larat_ParentPanel;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.*;
 
-public class IO_MIG {
+public class Larat_inputoutput {
 
 	String path;
 	String new_path;
@@ -39,20 +41,15 @@ public class IO_MIG {
 	public static SimpleDateFormat formatter = new SimpleDateFormat(
 			"dd/dd/yyyy HH:mm");
 
-	// Nous allons commencer notre arborescence en créant la racine XML
-	// qui sera ici "personnes".
 	Element racine;
-
-	// On crée un nouveau Document JDOM basé sur la racine que l'on vient de
-	// créer
 	org.jdom2.Document document;
 
 	/**
 	 * Logger
 	 */
-	private static Logger logger = Logger.getLogger(MIG_JPanel_Parent.class);
+	private static Logger logger = Logger.getLogger(Larat_ParentPanel.class);
 
-	public IO_MIG() {
+	public Larat_inputoutput() {
 		racine = new Element("root");
 		document = new Document(racine);
 
@@ -61,7 +58,7 @@ public class IO_MIG {
 		logger.info("Demarrage de l'application");
 	}
 
-	public IO_MIG(String path, LinkedList<SE> chain_SE) {
+	public Larat_inputoutput(String path, LinkedList<SE> chain_SE) {
 		racine = new Element("root");
 		document = new Document(racine);
 		this.path = path;

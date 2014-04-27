@@ -1,59 +1,48 @@
-package melodi.main;
+package melodi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.html.HTMLDocument;
 
+import melodi.view.listener.Listener_LeftTextPane;
+import melodi.zcontroler.LaratControler;
 
-public class MIG_JPanel_Left extends JPanel {
-	/**
-	 * 
-	 */
-	public JTextPane textPane;
-	public HTMLDocument htmlDocTextPane;
+
+public class Larat_LeftPanel extends JPanel {
+	
+	public JTextPane leftTextPane;
 	private static final long serialVersionUID = 1L;
-	public MIG_JPanel_Parent mig;
 
-	public MIG_JPanel_Left(MIG_JPanel_Parent mig, JTextPane textPane) {
-
-		this.mig = mig;
-		this.textPane=textPane;
+	public Larat_LeftPanel(LaratControler controler) {
+		
+		this.leftTextPane = new JTextPane(); 
+		Listener_LeftTextPane leftTextPaneListener = new Listener_LeftTextPane(leftTextPane,controler);
+		leftTextPane.addCaretListener(leftTextPaneListener);
+		leftTextPane.addMouseListener(leftTextPaneListener);
+		
 		this.setLayout(new BorderLayout());
 
-		htmlDocTextPane = new HTMLDocument();
-
-//		textPane.setContentType("text/html"); 
-//		textPane.setDocument(htmlDocTextPane);
-		textPane.setFont(new Font("Serif", Font.PLAIN, 12));
-		textPane.setEditable(false);
-		textPane.addCaretListener(mig);
-		textPane.addMouseListener(mig);
-
+		leftTextPane.setFont(new Font("Serif", Font.PLAIN, 12));
+		leftTextPane.setEditable(false);
 		
-		// areaScrollPane
-		JScrollPane areaScrollPane = new JScrollPane(textPane);
+		JScrollPane areaScrollPane = new JScrollPane(leftTextPane);
 		areaScrollPane
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		areaScrollPane.setPreferredSize(new Dimension(5000, 5000));
 		areaScrollPane.setMinimumSize(new Dimension(400, 400));
 
-		// areaScrollPane : compoundBorder
 		areaScrollPane.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder("Texte"),
 						BorderFactory.createEmptyBorder(5, 5, 5, 5)),
 				areaScrollPane.getBorder()));
-		
 
-		// Put everything together.
 		this.add(areaScrollPane, BorderLayout.CENTER);
-
 	}
-
-
 }
