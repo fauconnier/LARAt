@@ -1,4 +1,4 @@
-package melodi.atools;
+package melodi.model;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -11,7 +11,10 @@ public class Annotation {
 	int id;
 	
 	public Annotation(){
-		
+		comment = "";
+		document_name = "";
+		id = -1;
+		author = "";
 	}
 
 	public void setDocumentName(String document_name){

@@ -1,4 +1,4 @@
-package melodi.annotation;
+package melodi.deprecated;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -40,14 +40,13 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import melodi.internal.SE;
-import melodi.view.Larat_ParentPanel;
+import melodi.internal.Unit;
 
 public class PlotAnnotation extends JFrame {
 
 	TreeMap<Integer, Integer> pairs;
-	LinkedList<SE> a2_SE;
-	LinkedList<SE> a3_SE;
+	LinkedList<Unit> a2_SE;
+	LinkedList<Unit> a3_SE;
 	String doc;
 
 	ArrayList<Integer> a2_notselected;
@@ -74,8 +73,8 @@ public class PlotAnnotation extends JFrame {
 	JFrame jframe_table;
 	JTextArea label1;
 
-	public PlotAnnotation(TreeMap pairs, LinkedList<SE> a2_SE,
-			LinkedList<SE> a3_SE, String doc, boolean visible) {
+	public PlotAnnotation(TreeMap pairs, LinkedList<Unit> a2_SE,
+			LinkedList<Unit> a3_SE, String doc, boolean visible) {
 		super("Simple Adjudication Tool : " + doc);
 		this.pairs = pairs;
 		this.a2_SE = a2_SE;
@@ -291,7 +290,7 @@ public class PlotAnnotation extends JFrame {
 		System.out.printf("Mouse clicked:\tx= %d\ty= %d\n", x, y);
 
 		// 1. Récupérer la SE correspondante.
-		SE currSE = returnSE(x, y);
+		Unit currSE = returnSE(x, y);
 
 		// 2. l'Afficher à la manière de LARAt
 		if (currSE != null & tmp_annotateur.equals("Julien")) {
@@ -307,11 +306,11 @@ public class PlotAnnotation extends JFrame {
 
 	}
 
-	public SE returnSE(int x, int y) {
+	public Unit returnSE(int x, int y) {
 
-		SE toReturn = new SE();
+		Unit toReturn = new Unit();
 		toReturn.setId(100);
-		for (SE currSE : a2_SE) {
+		for (Unit currSE : a2_SE) {
 
 			int start_currSE = currSE.getIndice_begin();
 			int end_currSE = currSE.getIndice_end();
@@ -338,7 +337,7 @@ public class PlotAnnotation extends JFrame {
 			}
 		}
 
-		for (SE currSE : a3_SE) {
+		for (Unit currSE : a3_SE) {
 
 			int start_currSE = currSE.getIndice_begin();
 			int end_currSE = currSE.getIndice_end();
@@ -372,7 +371,7 @@ public class PlotAnnotation extends JFrame {
 		Graphics g = this.getGraphics();
 
 		// A2
-		for (SE currSE : a2_SE) {
+		for (Unit currSE : a2_SE) {
 
 			int start_currSE = currSE.getIndice_begin();
 			int end_currSE = currSE.getIndice_end();
@@ -427,7 +426,7 @@ public class PlotAnnotation extends JFrame {
 		}
 
 		// A3
-		for (SE currSE : a3_SE) {
+		for (Unit currSE : a3_SE) {
 
 			int start_currSE = currSE.getIndice_begin();
 			int end_currSE = currSE.getIndice_end();
@@ -491,12 +490,12 @@ public class PlotAnnotation extends JFrame {
 
 		// Max end_SE
 		int max = 0;
-		for (SE currSE : a2_SE) {
+		for (Unit currSE : a2_SE) {
 			if (currSE.getIndice_end() > max) {
 				max = currSE.getIndice_end();
 			}
 		}
-		for (SE currSE : a3_SE) {
+		for (Unit currSE : a3_SE) {
 			if (currSE.getIndice_end() > max) {
 				max = currSE.getIndice_end();
 			}
@@ -541,13 +540,13 @@ public class PlotAnnotation extends JFrame {
 		this.a3_notselected = new ArrayList<Integer>();
 
 		// A2
-		for (SE currSE : a2_SE) {
+		for (Unit currSE : a2_SE) {
 			if (!pairs.containsKey(currSE.getId())) {
 				a2_notselected.add(currSE.getId());
 			}
 		}
 		// A3
-		for (SE currSE : a3_SE) {
+		for (Unit currSE : a3_SE) {
 			if (!pairs.containsValue(currSE.getId())) {
 				a3_notselected.add(currSE.getId());
 			}
@@ -561,8 +560,8 @@ public class PlotAnnotation extends JFrame {
 		int index_a2 = getIndex(a2_SE, idDocA2);
 		int index_a3 = getIndex(a3_SE, idDocA3);
 
-		SE se_a2 = a2_SE.get(index_a2);
-		SE se_a3 = a3_SE.get(index_a3);
+		Unit se_a2 = a2_SE.get(index_a2);
+		Unit se_a3 = a3_SE.get(index_a3);
 
 		// Milieu se A2
 		int x1 = getMiddleX(se_a2, y_a2);
@@ -576,7 +575,7 @@ public class PlotAnnotation extends JFrame {
 
 	}
 
-	public int getMiddleX(SE currSE, int y_a) {
+	public int getMiddleX(Unit currSE, int y_a) {
 
 		double tmp_x1 = (double) currSE.getIndice_begin() / max;
 		tmp_x1 = tmp_x1 * length_line;
@@ -585,18 +584,18 @@ public class PlotAnnotation extends JFrame {
 		return x1_norm + 2;
 	}
 
-	public int getMiddleY(SE currSE, int y_a) {
+	public int getMiddleY(Unit currSE, int y_a) {
 
 		int y = y_a;
 		return y;
 	}
 
-	public static int getIndex(LinkedList<SE> list_SE, int id_doc) {
+	public static int getIndex(LinkedList<Unit> list_SE, int id_doc) {
 		// Il est possible que cette classe soit redondante par rapport
 		// aux identifiants, mais dans le doute,..
 		int index = 0;
 		int index_sortie = -1;
-		for (SE currSE : list_SE) {
+		for (Unit currSE : list_SE) {
 			if (currSE.getId() == id_doc) {
 				index_sortie = index;
 			}

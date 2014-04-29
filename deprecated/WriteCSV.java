@@ -1,4 +1,4 @@
-package melodi.annotation;
+package melodi.deprecated;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import melodi.internal.SE;
+import melodi.internal.Unit;
 import melodi.model.Larat_inputoutput;
 import au.com.bytecode.opencsv.*;
 
@@ -23,15 +23,15 @@ public class WriteCSV {
 		// Ouvrir les fichiers d'annotation [okay]
 		Larat_inputoutput io_julien = new Larat_inputoutput();
 		io_julien.readThis(doc_julien);
-		LinkedList<SE>	chain_julien = io_julien.getChain();
+		LinkedList<Unit>	chain_julien = io_julien.getChain();
 		
 		Larat_inputoutput io_sophie = new Larat_inputoutput();
 		io_sophie.readThis(doc_sophie);
-		LinkedList<SE> chain_sophie = io_sophie.getChain();
+		LinkedList<Unit> chain_sophie = io_sophie.getChain();
 		
 		Larat_inputoutput io_m_jp = new Larat_inputoutput();
 		io_m_jp.readThis(doc_m_jp);
-		LinkedList<SE> chain_m_jp = io_m_jp.getChain();
+		LinkedList<Unit> chain_m_jp = io_m_jp.getChain();
 		
 		
 		 // Préparation du fichier .CSV
@@ -47,9 +47,9 @@ public class WriteCSV {
 			
 			
 			for(int i=0;i < chain_m_jp.size(); i++){
-				SE se_julien = chain_julien.get(i);
-				SE se_sophie = chain_sophie.get(i);
-				SE se_m_jp = chain_m_jp.get(i);
+				Unit se_julien = chain_julien.get(i);
+				Unit se_sophie = chain_sophie.get(i);
+				Unit se_m_jp = chain_m_jp.get(i);
 				
 				String se_julien_rhetorique = axeRehtorique(se_julien);
 				String se_sophie_rhetorique = axeRehtorique(se_sophie);
@@ -81,7 +81,7 @@ public class WriteCSV {
 	}
 	
 	
-	public static String axeRehtorique(SE currentSE){
+	public static String axeRehtorique(Unit currentSE){
 		
 		String axe_rethorique_return = "";
 		if(currentSE.getAxe_rhetorique().equals("")){

@@ -1,4 +1,4 @@
-package melodi.annotation;
+package melodi.deprecated;
 
 
 public class MainPrintAnnotation {

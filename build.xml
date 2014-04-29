@@ -6,11 +6,11 @@
 	<property name="lib.dir" location="lib" />
 	<property name="dist.dir" value="dist" />
 	<property name="image.dir" value="dist" />
-	<property name="main.class" value="melodi.main.MIG_Main" />
+	<property name="main.class" value="melodi.main.Larat_Main" />
 	<property name="develop" value="Jean-Philippe Fauconnier" />
 	<property name="junit_path" value="${lib.dir}/junit-4.11.jar" />
 	<property name="application.title" value="LARAt" />
-	<property name="application.version" value="1.1.5b" />
+	<property name="application.version" value="1.1.6" />
 
 	<!-- Date -->
 	<tstamp>

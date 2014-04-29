@@ -1,4 +1,4 @@
-package melodi.annotation;
+package melodi.deprecated;
 
 import java.awt.*;
 import java.io.FileReader;
@@ -65,13 +65,13 @@ public class MainPlotAnnotation extends JFrame {
 				+ doc + ".html";
 		Larat_inputoutput io_LARAt_app = new Larat_inputoutput();
 		io_LARAt_app.readThis(currFileDoc);
-		LinkedList<SE> a2_SE_ll = io_LARAt_app.getChain();
+		LinkedList<Unit> a2_SE_ll = io_LARAt_app.getChain();
 
 		String currFileDoc2 = "/home/jfaucon/Thesis/Data/LARA_phase1/Sophie/LARA_corpus/"
 				+ doc + ".html";
 		Larat_inputoutput io_LARAt_app2 = new Larat_inputoutput();
 		io_LARAt_app2.readThis(currFileDoc2);
-		LinkedList<SE> a3_SE_ll = io_LARAt_app2.getChain();
+		LinkedList<Unit> a3_SE_ll = io_LARAt_app2.getChain();
 
 		// Sanity view
 		System.out.println("A2 size = " + a2_SE_ll.size());

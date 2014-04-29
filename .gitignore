@@ -55,8 +55,6 @@ MYMETA.yml
 nytprof.out
 pm_to_blib
 log/
-dist/**
-./dist/**
 
 log/**
 

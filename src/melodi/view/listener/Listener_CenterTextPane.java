@@ -7,21 +7,35 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.text.BadLocationException;
 
-import melodi.zcontroler.LaratControler;
+import melodi.controler.LaratControler;
+import melodi.view.CenterTextPane;
 
 public class Listener_CenterTextPane implements CaretListener, MouseListener{
+	
+	
 	LaratControler controler;
-	JTextPane textPane;
+	CenterTextPane centerTextPane;
+	
+	
+	public String current_selection_CenterPane;
+	public int start_current_selection_CenterPane;
+	public int end_current_selection_CenterPane;
+	public int last_current_selection_CenterPane;
 	
 	/**
 	 * Listen to events from textPane and notifies those
 	 * to controler.
 	 * @param controler
 	 */
-	public Listener_CenterTextPane(JTextPane textPane, LaratControler controler){
-		this.textPane=textPane;
+	public Listener_CenterTextPane(CenterTextPane centerTextPane, LaratControler controler){
+		this.centerTextPane=centerTextPane;
 		this.controler=controler;
+		this.current_selection_CenterPane = "";
+		this.start_current_selection_CenterPane = -1;
+		this.end_current_selection_CenterPane = -1;
+		this.last_current_selection_CenterPane = -1;
 	}
 
 	@Override
@@ -29,40 +43,77 @@ public class Listener_CenterTextPane implements CaretListener, MouseListener{
 		
 		if (e.getClickCount() == 2) {
 			Point pt = new Point(e.getX(), e.getY());
-			int pos = textPane.viewToModel(pt);
-			controler.selectSubAnnotationAtChar(pos);
+			int pos = centerTextPane.viewToModel(pt);
+			controler.actionSelectSubAnnotationAtChar(pos);
 		}
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void caretUpdate(CaretEvent arg0) {
-		// TODO Auto-generated method stub
+	public void caretUpdate(CaretEvent e) {
 		
-	}
+			int dot = e.getDot();
+			int mark = e.getMark();
+			int pos = 0;
+			int dif = 0;
+			int min = 0;
+			int max = 0;
 
+			if (dot < mark) {
+				pos = dot;
+				dif = mark - dot;
+				min = dot;
+				max = mark;
+				try {
+					String textString = centerTextPane.getText(pos, dif);
+					current_selection_CenterPane = textString;
+					current_selection_CenterPane.replace("\n", "<br>");
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				start_current_selection_CenterPane = pos;
+				end_current_selection_CenterPane = pos + dif;
+
+			} else if (dot > mark) {
+				pos = mark;
+				dif = dot - mark;
+				min = mark;
+				max = dot;
+
+				try {
+					String textString = centerTextPane.getText(pos, dif);
+					current_selection_CenterPane = textString;
+					current_selection_CenterPane.replace("\n", "<br>");
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				start_current_selection_CenterPane = pos;
+				end_current_selection_CenterPane = pos + dif;
+
+			} else if (dot == mark) {
+			}
+
+			last_current_selection_CenterPane = end_current_selection_CenterPane;
+			controler.notifyCaretCenterUpdate(current_selection_CenterPane, start_current_selection_CenterPane, end_current_selection_CenterPane);
+	}
 }

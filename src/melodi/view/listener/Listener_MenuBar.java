@@ -1,5 +1,6 @@
 package melodi.view.listener;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,10 +8,10 @@ import javax.swing.JMenuItem;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-import melodi.zcontroler.LaratControler;
+import melodi.controler.LaratControler;
 
 public class Listener_MenuBar implements ActionListener, MenuListener {
-	LaratControler controler;
+	private LaratControler controler;
 	
 	/**
 	 * Listen to events from menu bar and notifies those
@@ -21,15 +22,14 @@ public class Listener_MenuBar implements ActionListener, MenuListener {
 		this.controler=controler;
 	}
 	
-	
 	public void actionPerformed(ActionEvent e) {
 		String str = ((JMenuItem)e.getSource()).getText();
 
 		if(str.equals("Open a file")){
-			this.controler.initDoc();
+			this.controler.actionPerformedOpenFile();
 		}
 		else if(str.equals("Save")){
-			controler.actionPerformedValid();
+			controler.actionPerformedValid("","");
 		}
 		else if(str.equals("Quit")){
 			controler.actionPerformedQuit();	

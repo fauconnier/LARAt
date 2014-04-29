@@ -1,4 +1,4 @@
-package melodi.annotation;
+package melodi.deprecated;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -6,8 +6,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-
-import melodi.view.Larat_ParentPanel;
 
 public class RunAndWait {
 	Larat_ParentPanel mig;

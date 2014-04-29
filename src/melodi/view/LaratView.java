@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -19,38 +20,47 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import javax.swing.text.html.HTMLDocument;
 
+import melodi.controler.LaratControler;
+import melodi.internal.Unit;
+import melodi.model.Larat_Metadata;
 import melodi.view.listener.Listener_CenterTextPane;
 import melodi.view.listener.Listener_LeftTextPane;
 import melodi.view.listener.Listener_MenuBar;
-import melodi.zcontroler.LaratControler;
 
 public class LaratView extends JFrame {
 
 	private LaratControler controler;
 	private JPanel larat_ParentPanel;
 	
-	/**
-	 * Panel 
+	/*
+	 * Variables from models
+	 */
+	private HTMLDocument currDocument;
+	private LinkedList<Unit> chainUnits;
+	private int currIndexUnit;
+	private Larat_Metadata currDocMetadata;
+	
+	/*
+	 * Panels and TextPane
 	 */
 	private Larat_LeftPanel leftPanel;
 	private Larat_CenterPanel centerPanel;
 	private Larat_RightPanel rightPanel;
 
 	/**
-	 * Pane
-	 */
-	private JTextPane leftTextPane;
-	private JTextPane centerTextPane;
-
-	/**
 	 * Constructor
 	 */
 	public LaratView(LaratControler controler) {
-		// Initialize controler
+		// 1. Initialize controler and model variables
 		this.controler = controler;
+		this.currDocument = new HTMLDocument();
+		this.chainUnits = new LinkedList<Unit>();
+		this.currIndexUnit = -1;
+		controler.notifyUpdate(currDocument,chainUnits,currIndexUnit);
 		
-		// Configure view
+		// 2. Configure view
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		this.setSize(1280, 800);
 		this.setTitle("LARAt : R1.1.5b");
@@ -59,11 +69,11 @@ public class LaratView extends JFrame {
 		this.setResizable(true);
 		this.addMenu();
 		
-		// Add Panels
+		// 3. Add Panels
 		this.initComposant();
 		this.setContentPane(larat_ParentPanel);
 		
-		// Visible
+		// 4. Visible
 		this.setVisible(true);
 	}
 	
@@ -73,23 +83,23 @@ public class LaratView extends JFrame {
 		larat_ParentPanel =  new JPanel();
 		larat_ParentPanel.setLayout(new GridLayout(1, 3));
 		
-		// leftPanel
+		// 1. leftPanel
 		leftPanel = new Larat_LeftPanel(controler);
 		
-		// centerPanel
+		// 2. centerPanel
 		centerPanel = new Larat_CenterPanel(controler);
 		
-		// rightPanel
+		// 3. rightPanel
 		rightPanel = new Larat_RightPanel(controler);
 
-		// Merge leftPanel and centerPanel
+		// 4. Merge leftPanel and centerPanel
 		JSplitPane left_center_splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				leftPanel, centerPanel);
 		left_center_splitPanel.setOneTouchExpandable(true);
 		left_center_splitPanel.setResizeWeight(0.90);
 		larat_ParentPanel.add(left_center_splitPanel);
 
-		// Add rightPanel
+		// 5. Add rightPanel to splitPane
 		JSplitPane all_panels_splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				left_center_splitPanel, rightPanel);
 		all_panels_splitPane.setOneTouchExpandable(true);
@@ -99,15 +109,26 @@ public class LaratView extends JFrame {
 	}
 
 	
-	
-	
-	
 	/**
 	 * Update View from Larat_Model
+	 * @param Document doc, Linked<SE> SE, int currentSE
 	 */
-	public void update() {
+	public void update(HTMLDocument currDocument, LinkedList<Unit> chainUnits, int currIndexUnit, Larat_Metadata currDocMetadata) {
+	
+		// 1. Update model variables and notify controler
+		this.currDocument = currDocument;
+		this.chainUnits = chainUnits;
+		this.currIndexUnit = currIndexUnit;
+		this.currDocMetadata = currDocMetadata;
+		controler.notifyUpdate(currDocument,chainUnits,currIndexUnit);
 		
+		
+		// 2. Update Panels and TextPane
+		leftPanel.update(currDocument, chainUnits, currIndexUnit,currDocMetadata);
+		centerPanel.update(currDocument,chainUnits,currIndexUnit,currDocMetadata);
+		rightPanel.update(currDocument, chainUnits, currIndexUnit,currDocMetadata);
 	}
+	
 
 	
 	
@@ -118,11 +139,11 @@ public class LaratView extends JFrame {
 	 */
 	private void addMenu() {
 		
-		// menuBar and Listener
+		// 1. menuBar and Listener
 		JMenuBar menuBar = new JMenuBar();
 		Listener_MenuBar menuListener = new Listener_MenuBar(controler);
-
-		// Menu 'File'
+		
+		// 2. Menu 'File'
 		JMenu menuFile = new JMenu("File");
 		menuFile.addMenuListener(menuListener);
 		menuBar.add(menuFile);
@@ -147,7 +168,7 @@ public class LaratView extends JFrame {
 		menuFile.add(itemQuit);
 		itemQuit.addActionListener(menuListener);
 
-		// Menu "Credits"
+		// 3. Menu "Credits"
 		JMenu menuCredit = new JMenu("Credits");
 		menuCredit.setMnemonic(KeyEvent.VK_N);
 		menuBar.add(menuCredit);
@@ -158,7 +179,7 @@ public class LaratView extends JFrame {
 		menuCredit.add(itemAbout);
 		itemAbout.addActionListener(menuListener);
 
-		// Add Menu bar to LaratView
+		// 4. Add Menu bar to LaratView
 		this.setJMenuBar(menuBar);
 	}
 

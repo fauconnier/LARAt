@@ -2,7 +2,7 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-public class SE  implements Graphical_Component, Comparable{
+public class Unit implements  Graphical_Component, Comparable{
 
 	
 	Cloture clot;
@@ -39,7 +39,7 @@ public class SE  implements Graphical_Component, Comparable{
 
 	// Un concept est associé au Primer et aux Items
 	
-	public SE(){
+	public Unit(){
 		Items myInternalItems = new Items();
 		items=myInternalItems;
 		axe_intentionnel = new ArrayList<String>();
@@ -47,7 +47,9 @@ public class SE  implements Graphical_Component, Comparable{
 		axe_rhetorique = "";
 		axe_semantique = "";
 		axe_visuel = "";
+		axe_visuel_nav_hyp = "";
 		axe_semantique_context = "";
+		annot = new Annotation();
 	
 	}
 	
@@ -207,7 +209,7 @@ public class SE  implements Graphical_Component, Comparable{
 
 	@Override
 	public int compareTo(Object arg0) {
-		SE b = (SE) arg0;
+		Unit b = (Unit) arg0;
 		return this.getIndice_begin() - b.getIndice_begin() ;
 	}
 

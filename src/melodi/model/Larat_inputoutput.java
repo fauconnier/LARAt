@@ -18,9 +18,8 @@ import melodi.internal.Item;
 import melodi.internal.Items;
 import melodi.internal.MarqueurRelation;
 import melodi.internal.Primer;
-import melodi.internal.SE;
+import melodi.internal.Unit;
 import melodi.internal.Segment;
-import melodi.view.Larat_ParentPanel;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -32,7 +31,7 @@ public class Larat_inputoutput {
 
 	String path;
 	String new_path;
-	LinkedList<SE> chain_SE;
+	LinkedList<Unit> chain_SE;
 	String annotateur;
 
 	static Date aujourdhui = new Date();
@@ -47,7 +46,7 @@ public class Larat_inputoutput {
 	/**
 	 * Logger
 	 */
-	private static Logger logger = Logger.getLogger(Larat_ParentPanel.class);
+//	private static Logger logger = Logger.getLogger(Larat_ParentPanel.class);
 
 	public Larat_inputoutput() {
 		racine = new Element("root");
@@ -55,10 +54,10 @@ public class Larat_inputoutput {
 
 		PropertyConfigurator
 				.configure("resources/properties/log4j.properties");
-		logger.info("Demarrage de l'application");
+		System.out.println("Demarrage de l'application");
 	}
 
-	public Larat_inputoutput(String path, LinkedList<SE> chain_SE) {
+	public Larat_inputoutput(String path, LinkedList<Unit> chain_SE) {
 		racine = new Element("root");
 		document = new Document(racine);
 		this.path = path;
@@ -72,7 +71,7 @@ public class Larat_inputoutput {
 		new_path = this.getNewPath();
 
 		if (!new_path.contains("html")) {
-			logger.info("IO_MIG_removeThisXML : suppresion de " + new_path);
+			System.out.println("IO_MIG_removeThisXML : suppresion de " + new_path);
 			File toDel = new File(new_path);
 			if (toDel.exists()) {
 				toDel.delete();
@@ -97,7 +96,8 @@ public class Larat_inputoutput {
 
 		this.recordSE();
 
-		for (SE mySE : chain_SE) {
+		for (Unit mySE : chain_SE) {
+			
 			// System.out.println(mySE.toString());
 
 			getPrimerForThisSE(mySE);
@@ -135,7 +135,7 @@ public class Larat_inputoutput {
 
 		this.recordSE();
 
-		for (SE mySE : chain_SE) {
+		for (Unit mySE : chain_SE) {
 			// System.out.println(mySE.toString());
 
 			getPrimerForThisSE(mySE);
@@ -154,7 +154,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getConceptsPrimer(SE currentSE) {
+	public void getConceptsPrimer(Unit currentSE) {
 		List listAnnotation = racine.getChildren("annotation");
 
 		Iterator i = listAnnotation.iterator();
@@ -217,7 +217,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getConceptItems(Item item, SE currentSE) {
+	public void getConceptItems(Item item, Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -286,7 +286,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getConceptsForThisSE(SE currentSE) {
+	public void getConceptsForThisSE(Unit currentSE) {
 
 		// Primer
 		getConceptsPrimer(currentSE);
@@ -298,7 +298,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getCirconstantPrimer(SE currentSE) {
+	public void getCirconstantPrimer(Unit currentSE) {
 		List listAnnotation = racine.getChildren("annotation");
 
 		Iterator i = listAnnotation.iterator();
@@ -361,7 +361,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getCirconstantItems(Item item, SE currentSE) {
+	public void getCirconstantItems(Item item, Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -430,7 +430,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getCirconstantsForThisSE(SE currentSE) {
+	public void getCirconstantsForThisSE(Unit currentSE) {
 		// Primer
 		getCirconstantPrimer(currentSE);
 
@@ -440,7 +440,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getMarqRelsPrimer(SE currentSE) {
+	public void getMarqRelsPrimer(Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -505,7 +505,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getMarqRelsItem(Item item, SE currentSE) {
+	public void getMarqRelsItem(Item item, Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -574,7 +574,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getMarqRelsForThisSE(SE currentSE) {
+	public void getMarqRelsForThisSE(Unit currentSE) {
 		// Primer
 		getMarqRelsPrimer(currentSE);
 
@@ -584,7 +584,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getAxeRhetoForThisSE(SE currentSE) {
+	public void getAxeRhetoForThisSE(Unit currentSE) {
 		List listAnnotation = racine.getChildren("annotation");
 		Iterator i = listAnnotation.iterator();
 		while (i.hasNext()) {
@@ -619,7 +619,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getAxeIntentForThisSE(SE currentSE) {
+	public void getAxeIntentForThisSE(Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 		Iterator i = listAnnotation.iterator();
@@ -669,7 +669,7 @@ public class Larat_inputoutput {
 		
 	}
 
-	public void getAxeSemanForThisSE(SE currentSE) {
+	public void getAxeSemanForThisSE(Unit currentSE) {
 		List listAnnotation = racine.getChildren("annotation");
 		Iterator i = listAnnotation.iterator();
 		while (i.hasNext()) {
@@ -742,7 +742,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getAxeVisuelForThisSE(SE currentSE) {
+	public void getAxeVisuelForThisSE(Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 		Iterator i = listAnnotation.iterator();
@@ -788,7 +788,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void getClotForThisSE(SE currentSE) {
+	public void getClotForThisSE(Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -827,7 +827,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getPrimerForThisSE(SE currentSE) {
+	public void getPrimerForThisSE(Unit currentSE) {
 
 		List listAnnotation = racine.getChildren("annotation");
 
@@ -866,7 +866,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void getItemsForThisSE(SE currentSE) {
+	public void getItemsForThisSE(Unit currentSE) {
 		List listAnnotation = racine.getChildren("annotation");
 
 		Iterator i = listAnnotation.iterator();
@@ -937,7 +937,7 @@ public class Larat_inputoutput {
 	public void recordSE() {
 		List listEtudiants = racine.getChildren("annotation");
 
-		chain_SE = new LinkedList<SE>();
+		chain_SE = new LinkedList<Unit>();
 
 		// Méthode : Pour chaque SE, on essaye de reconstruire ses informations
 
@@ -948,7 +948,7 @@ public class Larat_inputoutput {
 
 			// Si c'est une annotation
 			if (courant.getAttributeValue("type").equals("1")) {
-				SE newSE = new SE();
+				Unit newSE = new Unit();
 				Annotation newAnnotation = new Annotation();
 
 				/**
@@ -1038,11 +1038,11 @@ public class Larat_inputoutput {
 		return this.path;
 	}
 
-	public void setChain(LinkedList<SE> chain_SE) {
+	public void setChain(LinkedList<Unit> chain_SE) {
 		this.chain_SE = chain_SE;
 	}
 
-	public LinkedList<SE> getChain() {
+	public LinkedList<Unit> getChain() {
 		return this.chain_SE;
 	}
 
@@ -1054,7 +1054,7 @@ public class Larat_inputoutput {
 
 		// Annotation type 1
 		int num_annotation = 0;
-		for (SE currentSE : chain_SE) {
+		for (Unit currentSE : chain_SE) {
 
 			// System.out.println(currentSE.toString());
 
@@ -1082,7 +1082,7 @@ public class Larat_inputoutput {
 		}
 
 		// Type 2 - Primer/Item/Cloture
-		for (SE currentSE : chain_SE) {
+		for (Unit currentSE : chain_SE) {
 
 			// Primer - Item - Cloture
 			if (currentSE.getAnnotation() != null) {
@@ -1107,7 +1107,7 @@ public class Larat_inputoutput {
 		}
 
 		// Type 2 - Concept/Circonstant/MarqRel
-		for (SE currentSE : chain_SE) {
+		for (Unit currentSE : chain_SE) {
 
 			// Concepts
 			if (currentSE.getAnnotation() != null) {
@@ -1124,7 +1124,7 @@ public class Larat_inputoutput {
 		}
 
 		// Type 2 - Axe en tout genre
-		for (SE currentSE : chain_SE) {
+		for (Unit currentSE : chain_SE) {
 
 			// Axe visuel
 			if (currentSE.getAnnotation() != null) {
@@ -1153,7 +1153,7 @@ public class Larat_inputoutput {
 		return true;
 	}
 
-	public Element writeAxeVisuel(SE currentSE) {
+	public Element writeAxeVisuel(Unit currentSE) {
 
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
@@ -1218,7 +1218,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element writeAxeRhetorique(SE currentSE) {
+	public Element writeAxeRhetorique(Unit currentSE) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1284,7 +1284,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element writeAxeIntentionnel(SE currentSE) {
+	public Element writeAxeIntentionnel(Unit currentSE) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1358,7 +1358,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element writeAxeSemantique(SE currentSE) {
+	public Element writeAxeSemantique(Unit currentSE) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1513,13 +1513,13 @@ public class Larat_inputoutput {
 
 		// Mise en forme - test
 		if (sem_autre && visee_onto) {
-			logger.warn("writeAxeSemantique : Annotation inconsistante");
+			System.out.println("writeAxeSemantique : Annotation inconsistante");
 			System.out.println("Erreur sem_autre et visee_onto");
 		} else if (sem_autre && metaling) {
-			logger.warn("writeAxeSemantique : Annotation inconsistante");
+			System.out.println("writeAxeSemantique : Annotation inconsistante");
 			System.out.println("Erreur sem autre et metaling");
 		} else if (visee_onto && metaling) {
-			logger.warn("writeAxeSemantique : Annotation inconsistante");
+			System.out.println("writeAxeSemantique : Annotation inconsistante");
 			System.out.println("Erreur visée onto et metaling");
 		}
 
@@ -1563,7 +1563,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public void writeMarqRelPrimer(SE currentSE) {
+	public void writeMarqRelPrimer(Unit currentSE) {
 
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
@@ -1618,7 +1618,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void writeMarqRelItem(SE currentSE, Item item) {
+	public void writeMarqRelItem(Unit currentSE, Item item) {
 
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
@@ -1674,7 +1674,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void writeMarqRel(SE currentSE) {
+	public void writeMarqRel(Unit currentSE) {
 
 		if (currentSE.getPrimer() != null && currentSE.getPrimer().hasMarqRel()) {
 			writeMarqRelPrimer(currentSE);
@@ -1690,7 +1690,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void writeCirconstants(SE currentSE) {
+	public void writeCirconstants(Unit currentSE) {
 		if (currentSE.getPrimer() != null
 				&& currentSE.getPrimer().hasCirconstant()) {
 			writeCirconstantPrimer(currentSE);
@@ -1706,7 +1706,7 @@ public class Larat_inputoutput {
 		}
 	}
 
-	public void writeConcepts(SE currentSE) {
+	public void writeConcepts(Unit currentSE) {
 
 		// Il y a un CONCEPT dans le PRIMER
 		// Il y a un CONCEPT dans chacun des items
@@ -1729,7 +1729,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void writeCirconstantPrimer(SE currentSE) {
+	public void writeCirconstantPrimer(Unit currentSE) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1783,7 +1783,7 @@ public class Larat_inputoutput {
 		racine.addContent(annotation);
 	}
 
-	public void writeCirconstantItem(SE currentSE, Item item) {
+	public void writeCirconstantItem(Unit currentSE, Item item) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1837,7 +1837,7 @@ public class Larat_inputoutput {
 		racine.addContent(annotation);
 	}
 
-	public void writeConceptPrimer(SE currentSE) {
+	public void writeConceptPrimer(Unit currentSE) {
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
 		annotation.setAttribute(classe);
@@ -1892,7 +1892,7 @@ public class Larat_inputoutput {
 
 	}
 
-	public void writeConceptItem(SE currentSE, Item item) {
+	public void writeConceptItem(Unit currentSE, Item item) {
 
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
@@ -1946,7 +1946,7 @@ public class Larat_inputoutput {
 		racine.addContent(annotation);
 	}
 
-	public Element writeAnnotItem(Items itemsList, SE currentSE) {
+	public Element writeAnnotItem(Items itemsList, Unit currentSE) {
 
 		Element annotation = new Element("annotation");
 		Attribute classe = new Attribute("type", "2");
@@ -1992,7 +1992,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element writeAnnotCloture(SE currentSE) {
+	public Element writeAnnotCloture(Unit currentSE) {
 		// Gestion de la clôture
 
 		Element annotation = new Element("annotation");
@@ -2028,7 +2028,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element writeAnnotPrimer(SE currentSE) {
+	public Element writeAnnotPrimer(Unit currentSE) {
 		// Gestion du primer
 
 		Element annotation = new Element("annotation");
@@ -2067,7 +2067,7 @@ public class Larat_inputoutput {
 		return annotation;
 	}
 
-	public Element metaData(SE currentSE, int num_annotation) {
+	public Element metaData(Unit currentSE, int num_annotation) {
 
 		Element metaData = new Element("metadata");
 
@@ -2091,7 +2091,7 @@ public class Larat_inputoutput {
 		return metaData;
 	}
 
-	public Element annotationSE(SE currentSE, int num_annotation) {
+	public Element annotationSE(Unit currentSE, int num_annotation) {
 
 		Element se = new Element("SE");
 
@@ -2118,7 +2118,7 @@ public class Larat_inputoutput {
 		return se;
 	}
 
-	public Element comment(SE currentSE) {
+	public Element comment(Unit currentSE) {
 		Element commentNode = new Element("comment");
 		commentNode.setText(currentSE.getAnnotation().getComment());
 
@@ -2143,7 +2143,7 @@ public class Larat_inputoutput {
 			// FileOutputStream
 			// avec en argument le nom du fichier pour effectuer la
 			// sérialisation.
-			logger.info("IO_MIG_enregistre : écriture dans " + fichier);
+			System.out.println("IO_MIG_enregistre : écriture dans " + fichier);
 			sortie.output(document, new FileOutputStream(fichier));
 		} catch (java.io.IOException e) {
 		}
@@ -2152,7 +2152,7 @@ public class Larat_inputoutput {
 	// TODO
 	public void organizeSegment() {
 
-		for (SE currentSE : chain_SE) {
+		for (Unit currentSE : chain_SE) {
 
 			for (Segment segment : currentSE.getPrimer().getConcept()) {
 
@@ -2172,7 +2172,7 @@ public class Larat_inputoutput {
 
 	public void organizeItems() {
 
-		for (SE mySe : chain_SE) {
+		for (Unit mySe : chain_SE) {
 			Items myListItems = mySe.getItems();
 			Collections.sort(myListItems);
 		}
@@ -2194,7 +2194,7 @@ public class Larat_inputoutput {
 		}
 		new_path = new_path.replaceAll("html", "xml");
 
-		logger.info("IO_MIG_getNewPath : chemin pour le XML " + new_path);
+		System.out.println("IO_MIG_getNewPath : chemin pour le XML " + new_path);
 		return new_path;
 	}
 
