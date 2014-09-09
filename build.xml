@@ -10,7 +10,7 @@
 	<property name="develop" value="Jean-Philippe Fauconnier" />
 	<property name="junit_path" value="${lib.dir}/junit-4.11.jar" />
 	<property name="application.title" value="LARAt" />
-	<property name="application.version" value="1.1.6" />
+	<property name="application.version" value="1.1.6b" />
 
 	<!-- Date -->
 	<tstamp>
@@ -53,8 +53,8 @@
 		<copy todir="${dist.dir}/resources/">
 			<fileset dir="resources" />
 		</copy>
-		<copy todir="${dist.dir}/sample/">
-			<fileset dir="sample" />
+		<copy todir="${dist.dir}/samples/">
+			<fileset dir="samples" />
 		</copy>
 			
 		<!-- packaging -->

@@ -33,6 +33,7 @@ public class LaratView extends JFrame {
 
 	private LaratControler controler;
 	private JPanel larat_ParentPanel;
+	private String title_head = "LARAt : R1.1.6b";
 	
 	/*
 	 * Variables from models
@@ -63,7 +64,7 @@ public class LaratView extends JFrame {
 		// 2. Configure view
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		this.setSize(1280, 800);
-		this.setTitle("LARAt : R1.1.5b");
+		this.setTitle(title_head);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
@@ -76,7 +77,6 @@ public class LaratView extends JFrame {
 		// 4. Visible
 		this.setVisible(true);
 	}
-	
 	
 	private void initComposant(){
 		

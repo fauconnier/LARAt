@@ -27,6 +27,10 @@ import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.*;
 
+import talismane_client.datamodel.Sentence;
+import talismane_client.datamodel.Structure;
+import talismane_client.datamodel.Token;
+
 public class Larat_inputoutput {
 
 	String path;
@@ -46,14 +50,14 @@ public class Larat_inputoutput {
 	/**
 	 * Logger
 	 */
-//	private static Logger logger = Logger.getLogger(Larat_ParentPanel.class);
+	// private static Logger logger = Logger.getLogger(Larat_ParentPanel.class);
 
 	public Larat_inputoutput() {
 		racine = new Element("root");
 		document = new Document(racine);
 
 		PropertyConfigurator
-				.configure("resources/properties/log4j.properties");
+				.configure("/home/jfaucon/workspace/larat/resources/properties/log4j.properties");
 		System.out.println("Demarrage de l'application");
 	}
 
@@ -71,7 +75,8 @@ public class Larat_inputoutput {
 		new_path = this.getNewPath();
 
 		if (!new_path.contains("html")) {
-			System.out.println("IO_MIG_removeThisXML : suppresion de " + new_path);
+			System.out.println("IO_MIG_removeThisXML : suppresion de "
+					+ new_path);
 			File toDel = new File(new_path);
 			if (toDel.exists()) {
 				toDel.delete();
@@ -79,9 +84,8 @@ public class Larat_inputoutput {
 		}
 	}
 
-	
-	public void readThisXML(String xml_path){
-		
+	public void readThisXML(String xml_path) {
+
 		SAXBuilder sxb = new SAXBuilder();
 		new_path = xml_path;
 		// System.out.println(new_path);
@@ -97,11 +101,13 @@ public class Larat_inputoutput {
 		this.recordSE();
 
 		for (Unit mySE : chain_SE) {
-			
+
 			// System.out.println(mySE.toString());
 
 			getPrimerForThisSE(mySE);
+			getPrimerSyntax(mySE);
 			getItemsForThisSE(mySE);
+			getItemsSyntax(mySE);
 			getClotForThisSE(mySE);
 			getAxeVisuelForThisSE(mySE);
 
@@ -113,10 +119,9 @@ public class Larat_inputoutput {
 			getAxeIntentForThisSE(mySE);
 			getAxeSemanForThisSE(mySE);
 		}
-		
-		
+
 	}
-	
+
 	public void readThis(String path) {
 
 		// On crée une instance de SAXBuilder
@@ -139,7 +144,9 @@ public class Larat_inputoutput {
 			// System.out.println(mySE.toString());
 
 			getPrimerForThisSE(mySE);
+			getPrimerSyntax(mySE);
 			getItemsForThisSE(mySE);
+			getItemsSyntax(mySE);
 			getClotForThisSE(mySE);
 			getAxeVisuelForThisSE(mySE);
 
@@ -601,19 +608,20 @@ public class Larat_inputoutput {
 					if (courant.getChild("SEval").getChild("paradigmatique")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_rhetorique("paradigmatique");
-						
-					} else if (courant.getChild("SEval").getChild("syntagmatique")
+
+					} else if (courant.getChild("SEval")
+							.getChild("syntagmatique")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_rhetorique("syntagmatique");
-						
+
 					} else if (courant.getChild("SEval").getChild("hybride")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_rhetorique("hybride");
-						
+
 					} else if (courant.getChild("SEval").getChild("bivalente")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_rhetorique("bivalente");
-					} 
+					}
 				}
 			}
 		}
@@ -637,15 +645,15 @@ public class Larat_inputoutput {
 					if (courant.getChild("SEval").getChild("descriptive")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("descriptive");
-					} 
+					}
 					if (courant.getChild("SEval").getChild("narrative")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("narrative");
-					} 
+					}
 					if (courant.getChild("SEval").getChild("explicative")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("explicative");
-					} 
+					}
 					if (courant.getChild("SEval").getChild("prescriptive")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("prescriptive");
@@ -657,16 +665,16 @@ public class Larat_inputoutput {
 					if (courant.getChild("SEval").getChild("argumentative")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("argumentative");
-					} 
-					if (courant.getChild("SEval").getChild("intentionnel_autre")
+					}
+					if (courant.getChild("SEval")
+							.getChild("intentionnel_autre")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.addAxe_intentionnel("autre_intentionnel");
-					} 
+					}
 				}
 			}
 		}
-		
-		
+
 	}
 
 	public void getAxeSemanForThisSE(Unit currentSE) {
@@ -686,57 +694,77 @@ public class Larat_inputoutput {
 					// 3 feuilles et plusieurs children
 					if (courant.getChild("SEval").getChild("visee_ontologique")
 							.getAttributeValue("value").equals("1")) {
-						
-						if(courant.getChild("SEval").getChild("visee_ontologique").getChild("isA").getAttributeValue("value").equals("1")){
+
+						if (courant.getChild("SEval")
+								.getChild("visee_ontologique").getChild("isA")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("isA");
-						}
-						else if(courant.getChild("SEval").getChild("visee_ontologique").getChild("partOf").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("visee_ontologique")
+								.getChild("partOf").getAttributeValue("value")
+								.equals("1")) {
 							currentSE.setAxe_semantique("partOf");
-						}
-						else if(courant.getChild("SEval").getChild("visee_ontologique").getChild("instanceOf").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("visee_ontologique")
+								.getChild("instanceOf")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("instanceOf");
-						}
-						else if(courant.getChild("SEval").getChild("visee_ontologique").getChild("ontologique_autre").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("visee_ontologique")
+								.getChild("ontologique_autre")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("autre_ontologique");
 						}
-						
-						
-					} else if (courant.getChild("SEval").getChild("metalinguistique")
+
+					} else if (courant.getChild("SEval")
+							.getChild("metalinguistique")
 							.getAttributeValue("value").equals("1")) {
-						
-						if(courant.getChild("SEval").getChild("metalinguistique").getChild("hyperonymie").getAttributeValue("value").equals("1")){
+
+						if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("hyperonymie")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("hyperonymie");
-						}
-						else if(courant.getChild("SEval").getChild("metalinguistique").getChild("meronymie").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("meronymie")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("meronymie");
-						}
-						else if(courant.getChild("SEval").getChild("metalinguistique").getChild("homonymie").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("homonymie")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("homonymie");
-						}
-						else if(courant.getChild("SEval").getChild("metalinguistique").getChild("synonymie").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("synonymie")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("synonymie");
-						}
-						else if(courant.getChild("SEval").getChild("metalinguistique").getChild("multilingue").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("multilingue")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("multilingue");
-						}
-						else if(courant.getChild("SEval").getChild("metalinguistique").getChild("lexical_autre").getAttributeValue("value").equals("1")){
+						} else if (courant.getChild("SEval")
+								.getChild("metalinguistique")
+								.getChild("lexical_autre")
+								.getAttributeValue("value").equals("1")) {
 							currentSE.setAxe_semantique("autre_lexical");
 						}
-						
-					} else if (courant.getChild("SEval").getChild("semantique_autre")
+
+					} else if (courant.getChild("SEval")
+							.getChild("semantique_autre")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_semantique("autre_semantique");
 					}
-					
-					
+
 					if (courant.getChild("SEval").getChild("contextuelle")
 							.getAttributeValue("value").equals("1")) {
 						currentSE.setAxe_semantiqueCircon("contextuelle");
-					}
-					else{
+					} else {
 						currentSE.setAxe_semantiqueCircon("non_contextuelle");
 					}
-					
+
 				}
 			}
 		}
@@ -826,6 +854,90 @@ public class Larat_inputoutput {
 		}
 
 	}
+	
+	public void getPrimerSyntax(Unit currentSE){
+		
+		List listAnnotation = racine.getChildren("annotation");
+
+		Iterator i = listAnnotation.iterator();
+		while (i.hasNext()) {
+			
+			
+			Element courant = (Element) i.next();
+
+			// Si c'est une annotation
+			if (courant.getAttributeValue("type").equals("2")) {
+				
+				if (courant.getChild("SEval").getAttributeValue("type")
+						.equals("primer_syntax")) {
+
+				
+					if (courant.getChild("SEval").getAttributeValue("idSE")
+							.equals("" + currentSE.getId())) {
+						
+						
+						Structure myStruc = new Structure();
+						
+						Element seVal = courant.getChild("SEval");
+						
+						// Parcours des Sentence
+						List listSentence = seVal.getChildren("sentence");
+						Iterator it_sentence = listSentence.iterator();
+						while(it_sentence.hasNext()){
+							
+							Sentence curr_sentence = new Sentence();
+							
+							Element curr_sentence_xml = (Element) it_sentence.next();
+							
+							int id_sentence = Integer.parseInt(curr_sentence_xml.getAttributeValue("id"));
+							curr_sentence.setId_sentence(id_sentence);
+							
+							// Parcours des mots
+							List listWord = curr_sentence_xml.getChildren("word");
+							Iterator it_word = listWord.iterator();
+							
+							while(it_word.hasNext()){
+								Element word = (Element) it_word.next();
+								
+								Token currToken = new Token();
+								
+								String lem = word.getAttributeValue("lem");
+								currToken.setLemma(lem);
+								
+								String postag = word.getAttributeValue("postag");
+								currToken.setCppostag(postag);
+								
+								String feats = word.getAttributeValue("morpho");
+								currToken.setFeats(feats);
+								
+								int head = Integer.parseInt(word.getAttributeValue("head"));
+								currToken.setHead(head);
+								
+								String pdep = word.getAttributeValue("dep");
+								currToken.setDeprel(pdep);
+								
+								int id = Integer.parseInt(word.getAttributeValue("id"));
+								currToken.setId_token(id);
+								
+								String form = word.getText();
+								currToken.setForm(form);
+								
+								
+								curr_sentence.add(currToken);
+							}
+							
+							
+							
+							myStruc.add(curr_sentence);
+						}
+						
+						currentSE.getPrimer().setStructure(myStruc);
+					}
+					
+				}
+			}
+		}
+	}
 
 	public void getPrimerForThisSE(Unit currentSE) {
 
@@ -864,6 +976,101 @@ public class Larat_inputoutput {
 			}
 		}
 
+	}
+	
+	public void getItemsSyntax(Unit currentSE){
+		List listAnnotation = racine.getChildren("annotation");
+
+		Iterator i = listAnnotation.iterator();
+		while (i.hasNext()) {
+			Element courant = (Element) i.next();
+
+			// Si c'est une annotation
+			if (courant.getAttributeValue("type").equals("2")) {
+
+				if (courant.getChild("SEval").getAttributeValue("type")
+						.equals("items_syntax")) {
+
+					if (courant.getChild("SEval").getAttributeValue("idSE")
+							.equals("" + currentSE.getId())) {
+
+						Element seval = courant.getChild("SEval");
+						
+						// Récupération des items de la SE
+						Items listItm = currentSE.getItems();
+						
+						// Récupération des items dans le XML
+						List itemList = courant.getChild("SEval").getChildren(
+								"item");
+						Iterator item_iterator = itemList.iterator();
+						
+						while (item_iterator.hasNext()) {
+							Structure myStructure = new Structure();
+							Element item_xml = (Element) item_iterator.next();
+							
+							int id_item = Integer.parseInt(item_xml.getAttributeValue("id"));
+							
+							// Parcours des Sentence
+							List listSentence = item_xml.getChildren("sentence");
+							Iterator it_sentence = listSentence.iterator();
+							
+							
+							
+							while(it_sentence.hasNext()){
+								
+								Sentence curr_sentence = new Sentence();
+								
+								Element curr_sentence_xml = (Element) it_sentence.next();
+								
+								int id_sentence = Integer.parseInt(curr_sentence_xml.getAttributeValue("id"));
+								curr_sentence.setId_sentence(id_sentence);
+								
+								// Parcours des mots
+								List listWord = curr_sentence_xml.getChildren("word");
+								Iterator it_word = listWord.iterator();
+								
+								while(it_word.hasNext()){
+									Element word = (Element) it_word.next();
+									
+									Token currToken = new Token();
+									
+									String lem = word.getAttributeValue("lem");
+									currToken.setLemma(lem);
+									
+									String postag = word.getAttributeValue("postag");
+									currToken.setCppostag(postag);
+									
+									String feats = word.getAttributeValue("morpho");
+									currToken.setFeats(feats);
+									
+									int head = Integer.parseInt(word.getAttributeValue("head"));
+									currToken.setHead(head);
+									
+									String pdep = word.getAttributeValue("dep");
+									currToken.setDeprel(pdep);
+									
+									int id = Integer.parseInt(word.getAttributeValue("id"));
+									currToken.setId_token(id);
+									
+									String form = word.getText();
+									currToken.setForm(form);
+									
+									
+									curr_sentence.add(currToken);
+								}
+								myStructure.add(curr_sentence);
+							}
+							// Ajout de la structure à l'Item
+							listItm.get(id_item).setStructure(myStructure);
+							
+						}
+					}
+
+				}
+			}
+		}
+		
+		
 	}
 
 	public void getItemsForThisSE(Unit currentSE) {
@@ -1079,6 +1286,34 @@ public class Larat_inputoutput {
 
 				num_annotation++;
 			}
+		}
+
+		/**
+		 * Annotation de Type 2
+		 */
+
+		// Type 2 - Primer/Item/Cloture analyse lexicale
+		for (Unit currentSE : chain_SE) {
+
+			if (currentSE.getAnnotation() != null) {
+
+				// Primer
+				if (currentSE.getPrimer() != null) {
+					racine.addContent(writeAnnotSyntaxPrimer(currentSE));
+					// writeAnnotSyntaxPrimer(currentSE);
+				}
+
+				// Items
+				if (currentSE.getItems().size() > 0) {
+					racine.addContent(writeAnnotSyntaxItem(currentSE));
+				}
+				
+				// Cloture
+				if (currentSE.getClot() != null) {
+					racine.addContent(writeAnnotCloture(currentSE));
+				}
+			}
+
 		}
 
 		// Type 2 - Primer/Item/Cloture
@@ -1885,7 +2120,6 @@ public class Larat_inputoutput {
 
 			SEval.addContent(text);
 			count_segment++;
-
 		}
 		annotation.addContent(SEval);
 		racine.addContent(annotation);
@@ -1944,6 +2178,91 @@ public class Larat_inputoutput {
 		}
 		annotation.addContent(SEval);
 		racine.addContent(annotation);
+	}
+
+	public Element writeAnnotSyntaxItem(Unit currentSE) {
+
+		Element annotation = new Element("annotation");
+		Attribute classe = new Attribute("type", "2");
+		annotation.setAttribute(classe);
+
+		int num_annotation = currentSE.getId();
+
+		Element metaData = metaData(currentSE, num_annotation);
+		annotation.addContent(metaData);
+
+		Element SEval = new Element("SEval");
+		Attribute type = new Attribute("type", "items_syntax");
+		SEval.setAttribute(type);
+		Attribute idSE = new Attribute("idSE", "" + num_annotation);
+		SEval.setAttribute(idSE);
+
+		int count = 0;
+		for (Item it : currentSE.getItems()) {
+			Element currItem = new Element("item");
+			Attribute currItem_attribute = new Attribute("id",""+count);
+			currItem.setAttribute(currItem_attribute);
+
+			Structure talismane_client_structure = it.getStructure();
+
+			int nb_sentence = 1;
+			for (Sentence currSentence : talismane_client_structure) {
+				Element new_sentence = new Element("sentence");
+				Attribute id_sentence = new Attribute("id", "" + nb_sentence);
+				new_sentence.setAttribute(id_sentence);
+				nb_sentence++;
+
+				int nb_word = 1;
+				for (Token currToken : currSentence) {
+					Element new_word = new Element("word");
+					Attribute id_word = new Attribute("id", "" + nb_word);
+					new_word.setAttribute(id_word);
+					nb_word++;
+
+					// Lem
+					Attribute lem = new Attribute("lem", ""
+							+ currToken.getLemma());
+					new_word.setAttribute(lem);
+
+					// postag
+					Attribute postag = new Attribute("postag", ""
+							+ currToken.getCppostag());
+					new_word.setAttribute(postag);
+
+					// morpho
+					Attribute morpho = new Attribute("morpho", ""
+							+ currToken.getFeats());
+					new_word.setAttribute(morpho);
+
+					// head
+					Attribute head = new Attribute("head", ""
+							+ currToken.getHead());
+					new_word.setAttribute(head);
+
+					// dep
+					Attribute dep = new Attribute("dep", ""
+							+ currToken.getDeprel());
+					new_word.setAttribute(dep);
+
+					new_word.setText(currToken.getForm());
+
+					new_sentence.addContent(new_word);
+				}
+
+				currItem.addContent(new_sentence);
+			}
+			
+			SEval.addContent(currItem);
+			count++;
+		}
+		annotation.addContent(SEval);
+
+		XMLOutputter outp = new XMLOutputter(Format.getPrettyFormat());
+		String s = outp.outputString(annotation);
+		System.out.println(s);
+
+		
+		return annotation;
 	}
 
 	public Element writeAnnotItem(Items itemsList, Unit currentSE) {
@@ -2024,6 +2343,81 @@ public class Larat_inputoutput {
 		text.setText(currentSE.getClot().getText());
 		SEval.addContent(text);
 		annotation.addContent(SEval);
+
+		return annotation;
+	}
+
+	public Element writeAnnotSyntaxPrimer(Unit currentSE) {
+
+		Element annotation = new Element("annotation");
+		Attribute classe = new Attribute("type", "2");
+		annotation.setAttribute(classe);
+
+		int num_annotation = currentSE.getId();
+
+		Element metaData = metaData(currentSE, num_annotation);
+		annotation.addContent(metaData);
+
+		Element SEval = new Element("SEval");
+		Attribute type = new Attribute("type", "primer_syntax");
+		SEval.setAttribute(type);
+		Attribute idSE = new Attribute("idSE", "" + num_annotation);
+		SEval.setAttribute(idSE);
+
+		Structure talismane_client_structure = currentSE.getPrimer()
+				.getStructure();
+
+		System.out.println("SIZE : " + talismane_client_structure.size());
+
+		int nb_sentence = 1;
+		for (Sentence currSentence : talismane_client_structure) {
+			Element new_sentence = new Element("sentence");
+			Attribute id_sentence = new Attribute("id", "" + nb_sentence);
+			new_sentence.setAttribute(id_sentence);
+			nb_sentence++;
+
+			int nb_word = 1;
+			for (Token currToken : currSentence) {
+				Element new_word = new Element("word");
+				Attribute id_word = new Attribute("id", "" + nb_word);
+				new_word.setAttribute(id_word);
+				nb_word++;
+
+				// Lem
+				Attribute lem = new Attribute("lem", "" + currToken.getLemma());
+				new_word.setAttribute(lem);
+
+				// postag
+				Attribute postag = new Attribute("postag", ""
+						+ currToken.getCppostag());
+				new_word.setAttribute(postag);
+
+				// morpho
+				Attribute morpho = new Attribute("morpho", ""
+						+ currToken.getFeats());
+				new_word.setAttribute(morpho);
+
+				// head
+				Attribute head = new Attribute("head", "" + currToken.getHead());
+				new_word.setAttribute(head);
+
+				// dep
+				Attribute dep = new Attribute("dep", "" + currToken.getDeprel());
+				new_word.setAttribute(dep);
+
+				new_word.setText(currToken.getForm());
+
+				new_sentence.addContent(new_word);
+			}
+
+			SEval.addContent(new_sentence);
+		}
+
+		annotation.addContent(SEval);
+
+		XMLOutputter outp = new XMLOutputter(Format.getPrettyFormat());
+		String s = outp.outputString(annotation);
+		System.out.println(s);
 
 		return annotation;
 	}
@@ -2194,7 +2588,8 @@ public class Larat_inputoutput {
 		}
 		new_path = new_path.replaceAll("html", "xml");
 
-		System.out.println("IO_MIG_getNewPath : chemin pour le XML " + new_path);
+		System.out
+				.println("IO_MIG_getNewPath : chemin pour le XML " + new_path);
 		return new_path;
 	}
 

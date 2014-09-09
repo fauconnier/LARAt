@@ -8,7 +8,7 @@ public class Concept extends ArrayList<Segment>{
 	public String toString() {
 		String toReturn = "	#ItemsList# = [\n";
 		for (Segment segment : this) {
-			toReturn += segment.toString();
+			toReturn += "(" + segment.getIndice_begin() +")"+ segment.getSurface() + "(" + segment.getIndice_end() + ")";
 		}
 		return toReturn + "]";
 	}
@@ -17,7 +17,7 @@ public class Concept extends ArrayList<Segment>{
 	public String getSurface() {
 		String toReturn = "";
 		for (Segment segment : this) {
-			toReturn += segment.getSurface();
+			toReturn += segment.getSurface()+"||";
 		}
 		return toReturn;
 	}

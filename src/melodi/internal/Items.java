@@ -2,7 +2,7 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-public class Items extends ArrayList<Item>{
+public class Items extends ArrayList<Item> implements java.io.Serializable{
 	
 	@Override
 	public String toString() {

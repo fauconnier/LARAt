@@ -52,7 +52,12 @@ public class LaratModel {
 	public LaratModel() {
 		chainUnits = new LinkedList<Unit>();
 		currIndexUnit = -1;
-	}	
+	}
+	
+	public LaratModel(LinkedList<Unit> chainUnits){
+		this.chainUnits = chainUnits;
+		currIndexUnit = -1;
+	}
 
 	public void addObserver(LaratView obs) {
 		this.obs = obs;
@@ -61,7 +66,8 @@ public class LaratModel {
 	public void notifyObserver(HTMLDocument currDocument,
 			LinkedList<Unit> chainUnits, int currIndexUnit,
 			Larat_Metadata currDocMetadata) {
-		obs.update(currDocument, chainUnits, currIndexUnit, currDocMetadata);
+		if(obs != null)
+			obs.update(currDocument, chainUnits, currIndexUnit, currDocMetadata);
 	}
 
 	public void refresh() {
@@ -76,9 +82,22 @@ public class LaratModel {
 		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
 	}
 	
+	
+	public void selectUnit(Unit currUnit) {
+		currIndexUnit = chainUnits.indexOf(currUnit);
+		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
+	}
+	
+	public void selectUnit(int currIndexUnit){
+		this.currIndexUnit = currIndexUnit;
+		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
+	}
+	
 	public void valid(){
 		valid("unknown","");
 	}
+	
+	
 	public void valid(String comment, String author){
 		
 		if (chainUnits.size() != 0) {
@@ -160,16 +179,19 @@ public class LaratModel {
 		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
 	}
 
-	public void selectUnit(Unit currUnit) {
-		currIndexUnit = chainUnits.indexOf(currUnit);
-		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
-	}
-
 	public void addUnit(Unit currUnit) {
 		chainUnits.add(currUnit);
 		Collections.sort(chainUnits);
 		currIndexUnit = chainUnits.indexOf(currUnit);
 		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
+	}
+	
+	public Unit getUnit(int currIndexUnit){
+		return chainUnits.get(currIndexUnit);
+	}
+	
+	public LinkedList<Unit> getAllUnits(){
+		return chainUnits;
 	}
 
 	public void removeUnit(Unit currUnit) {

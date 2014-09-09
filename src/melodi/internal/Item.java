@@ -2,7 +2,16 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-public class Item extends ArrayList<String> implements Graphical_Component, Comparable {
+import talismane_client.datamodel.Structure;
+
+public class Item extends ArrayList<String> implements java.io.Serializable, Graphical_Component, Comparable {
+	
+	
+	
+	/**
+	 * Machine Learning : EKAW
+	 */
+	Structure structure;
 
 	String id;
 	int indice_begin;
@@ -19,6 +28,7 @@ public class Item extends ArrayList<String> implements Graphical_Component, Comp
 		this.concept = new Concept();
 		this.circonstant = new Circonstant();
 		this.marqueurRel = new MarqueurRelation();
+		this.structure =  new Structure();
 	}
 	
 	public void setMarqueurRel(MarqueurRelation marqueurRel){
@@ -122,4 +132,12 @@ public class Item extends ArrayList<String> implements Graphical_Component, Comp
 		return this.getIndice_begin() - b.getIndice_begin() ;
 	}
 
+	public void setStructure(Structure structure){
+		this.structure=structure;
+	}
+	
+	public Structure getStructure(){
+		return this.structure;
+	}
+	
 }

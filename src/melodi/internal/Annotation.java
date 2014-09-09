@@ -2,7 +2,7 @@ package melodi.internal;
 
 import java.util.Date;
 
-public class Annotation {
+public class Annotation implements java.io.Serializable{
 	
 	String author;
 	Date date;

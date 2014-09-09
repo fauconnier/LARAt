@@ -1,6 +1,6 @@
 package melodi.internal;
 
-public class Segment implements Graphical_Component{
+public class Segment implements java.io.Serializable, Graphical_Component{
 	
 	String text;
 	String id;

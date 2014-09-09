@@ -2,10 +2,23 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-public class Unit implements  Graphical_Component, Comparable{
+public class Unit implements java.io.Serializable, Graphical_Component, Comparable{
 
 	
 	Cloture clot;
+	
+	/**
+	 * Alignement des primers/items : concepts
+	 */
+	String document;
+	
+	/**
+	 * MachineLearing EKAW
+	 */
+	String y;
+	String last_y;
+	String predict_y;
+	String predict_onto_y;
 	
 	/**
 	 * Caractérisation : Axe
@@ -34,6 +47,7 @@ public class Unit implements  Graphical_Component, Comparable{
 	private Primer primer;
 	private Items items;
 	private int id;
+	private int old_id;
 	private Annotation annot;
 	
 
@@ -51,6 +65,22 @@ public class Unit implements  Graphical_Component, Comparable{
 		axe_semantique_context = "";
 		annot = new Annotation();
 	
+	}
+	
+	public void setY(String y){
+		this.y = y;
+	}
+	
+	public String getY(){
+		return this.y;
+	}
+	
+	public void setLastY(String last_y){
+		this.last_y = last_y;
+	}
+	
+	public String getLastY(){
+		return this.last_y;
 	}
 	
 	public void addAxe_intentionnel(String axe_intentionnel){
@@ -143,6 +173,14 @@ public class Unit implements  Graphical_Component, Comparable{
 	public void setIndice_end(int indice_end) {
 		this.indice_end = indice_end;
 	}
+	
+	public int getIdOld() {
+		return old_id;
+	}
+
+	public void setIdOld(int id) {
+		this.old_id = old_id;
+	}
 
 	public int getId() {
 		return id;
@@ -206,6 +244,31 @@ public class Unit implements  Graphical_Component, Comparable{
 		this.clot = clot;
 	}
 	
+	public String getDocument(){
+		return document;
+	}
+	
+	public void setDocument(String doc){
+		this.document=doc;
+	}
+
+	public String getPredict_y() {
+		return predict_y;
+	}
+
+	public void setPredict_y(String predict_y) {
+		this.predict_y = predict_y;
+	}
+
+	
+	
+	public String getPredict_onto_y() {
+		return predict_onto_y;
+	}
+
+	public void setPredict_onto_y(String predict_onto_y) {
+		this.predict_onto_y = predict_onto_y;
+	}
 
 	@Override
 	public int compareTo(Object arg0) {

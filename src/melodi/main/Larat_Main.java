@@ -16,8 +16,6 @@ public class Larat_Main {
 		LaratView laratInterface = new LaratView(laratControler);
 		laratModel.addObserver(laratInterface);
 		
-		
-
 	}
 
 }

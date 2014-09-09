@@ -2,7 +2,7 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
-public class Cloture extends ArrayList<String> implements Graphical_Component{
+public class Cloture extends ArrayList<String> implements java.io.Serializable, Graphical_Component{
 	
 	int id_se;
 	int indice_begin;

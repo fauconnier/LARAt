@@ -19,13 +19,12 @@ public class LeftTextPane extends JTextPane {
 	public LeftTextPane(){
 	}
 
+	// TODO : bug ici avec open-jdk
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-
-	}
+//	@Override
+//	protected void paintComponent(Graphics g) {
+//		super.paintComponent(g);
+//	}
 	
 
 }
