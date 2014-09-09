@@ -58,7 +58,7 @@
 		</copy>
 			
 		<!-- packaging -->
-		<copy file="README" todir="${dist.dir}"/>
+		<copy file="README.md" todir="${dist.dir}"/>
 		<copy file="LICENSE" todir="${dist.dir}"/>
 		<copy file="AUTHOR" todir="${dist.dir}"/>
 		<echo file="${dist.dir}/VERSION" append="true" message="Name:${application.title}${line.separator}Version:${application.version}${line.separator}Build:${TODAY_GB}"/>

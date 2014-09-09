@@ -7,13 +7,13 @@
 * Cross-plateformes : Linux, Windows et Mac,
 * Sélection graphique des segments textuels,
 * Sauvegarde XML des annotations,
-* Supporte les annotations imbriquées,
-* Supporte UTF-8 et ISO-8859-1,
-* Déploiement Ant (pour Windows et Linux),
+* Permet les annotations imbriquées,
+* Support UTF-8 et ISO-8859-1,
+* Déploiement Ant (pour Windows et Linux).
 
 
 ### Utilisation
 
-    java -jar /dist/LARAt-1.1.x.rar
+    java -jar /dist/LARAt_1.1.x.rar
 
 
