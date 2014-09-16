@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <annotation type="1">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SE>
+      <id>0</id>
+      <text>Par exemple, chez les moines Trappistes, une maison nouvellement fondée est d'abord :
+une fondation, partie de la maison-mère ;
+un prieuré (simple ou majeur) quand elle atteint un nombre de moines (ou moniales) et une autonomie financière suffisants ;
+puis une abbaye, quand elle est pleinement autonome, que ce soit en nombre de moines (ou moniales), en bâtiments et en ressources.</text>
+      <span begin="769" end="1151" />
+    </SE>
+    <comment>Ceci est mon commetnaire</comment>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="primer" idSE="0">
+      <span begin="1" end="86" />
+      <text>Par exemple, chez les moines Trappistes, une maison nouvellement fondée est d'abord :</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="items" idSE="0">
+      <span begin="87" end="128" id="0" />
+      <text id="0">une fondation, partie de la maison-mère ;</text>
+      <span begin="129" end="252" id="1" />
+      <text id="1">un prieuré (simple ou majeur) quand elle atteint un nombre de moines (ou moniales) et une autonomie financière suffisants ;</text>
+      <span begin="253" end="383" id="2" />
+      <text id="2">puis une abbaye, quand elle est pleinement autonome, que ce soit en nombre de moines (ou moniales), en bâtiments et en ressources.</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="concept" idSE="0" localisation="item" idItem="null">
+      <span begin="87" end="99" id="0" />
+      <text id="0">une fondatio</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="concept" idSE="0" localisation="item" idItem="null">
+      <span begin="129" end="140" id="0" />
+      <text id="0">un prieuré</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="concept" idSE="0" localisation="item" idItem="null">
+      <span begin="253" end="269" id="0" />
+      <text id="0">puis une abbaye,</text>
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="axe_visuel" idSE="0">
+      <horizontale value="0" />
+      <verticale value="1" />
+      <navigationnelle value="0" />
+      <hypertextuelle value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="axe_rhetorique" idSE="0">
+      <paradigmatique value="1" />
+      <syntagmatique value="0" />
+      <hybride value="0" />
+      <bivalente value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="axe_intentionnel" idSE="0">
+      <descriptive value="1" />
+      <narrative value="0" />
+      <explicative value="0" />
+      <prescriptive value="0" />
+      <procedurale value="0" />
+      <argumentative value="0" />
+      <intentionnel_autre value="0" />
+    </SEval>
+  </annotation>
+  <annotation type="2">
+    <metadata>
+      <id>0</id>
+      <auteur>A1</auteur>
+      <date>29/04/14 23:24</date>
+      <document>Abbaye.html</document>
+    </metadata>
+    <SEval type="axe_semantique" idSE="0">
+      <visee_ontologique value="0">
+        <isA value="0" />
+        <partOf value="0" />
+        <instanceOf value="0" />
+        <ontologique_autre value="0" />
+      </visee_ontologique>
+      <metalinguistique value="0">
+        <hyperonymie value="0" />
+        <meronymie value="0" />
+        <homonymie value="0" />
+        <synonymie value="0" />
+        <multilingue value="0" />
+        <lexical_autre value="0" />
+      </metalinguistique>
+      <semantique_autre value="1" />
+      <contextuelle value="0" />
+    </SEval>
+  </annotation>
+</root>
