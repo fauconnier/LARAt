@@ -14,6 +14,11 @@
 
 ### Utilisation
 
+    # distribution courante
     java -jar /dist/LARAt_1.1.x.rar
+    
+    # générer une nouvelle distribution
+    ant dist
+    java -jar /dist/LARAt_1.1.x.jar
 
 
