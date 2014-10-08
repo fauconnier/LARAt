@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class Unit implements java.io.Serializable, Graphical_Component, Comparable{
 
 	
-	Cloture clot;
-	
 	/**
 	 * Alignement des primers/items : concepts
 	 */
@@ -30,6 +28,8 @@ public class Unit implements java.io.Serializable, Graphical_Component, Comparab
 	ArrayList<String> axe_intentionnel;
 	String axe_semantique;
 	String axe_semantique_context;
+	Cloture clot;
+	
 	
 	/**
 	 * Objets internes

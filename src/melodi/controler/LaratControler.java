@@ -591,4 +591,8 @@ public class LaratControler {
 		}
 		return -1;
 	}
+	
+	public String getEncoding(){
+		return laratModel.getEncoding();
+	}
 }

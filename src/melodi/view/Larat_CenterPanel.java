@@ -47,6 +47,7 @@ public class Larat_CenterPanel extends JPanel {
 	/*
 	 * Variables from Model
 	 */
+	private LaratControler controler;
 	private HTMLDocument currDocument;
 	private LinkedList<Unit> chainUnits;
 	private int currIndexUnit;
@@ -100,6 +101,8 @@ public class Larat_CenterPanel extends JPanel {
 	
 	public Larat_CenterPanel(LaratControler controler) {
 
+		this.controler = controler;
+		
 		// 1. TextPane and Listener initialization
 		Listener_CenterButtons centerButtonsListener = new Listener_CenterButtons(this,controler);
 		centerTextPane = new CenterTextPane();
@@ -312,7 +315,8 @@ public class Larat_CenterPanel extends JPanel {
 			CenterTextPane toTest = new CenterTextPane();
 			toTest.setContentType("text/html");
 
-			Charset charset = Charset.forName("ISO-8859-1");
+//			Charset charset = Charset.forName("ISO-8859-1");
+			Charset charset = Charset.forName(controler.getEncoding());
 				try {
 					BufferedReader in = new BufferedReader(new InputStreamReader(
 							new FileInputStream(currDocMetadata.getDocPath()), charset));

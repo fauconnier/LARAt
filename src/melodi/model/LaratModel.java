@@ -39,6 +39,7 @@ public class LaratModel {
 	private String currDocName;
 	private String currDocPath;
 	private Larat_Metadata currDocMetadata;
+	private String encoding;
 
 	/*
 	 * Units variables
@@ -133,7 +134,7 @@ public class LaratModel {
 		// 1. RenderHTML
 		JTextPane renderHTMLDocument = new JTextPane();
 		renderHTMLDocument.setContentType("text/html");
-		Charset charset = Charset.forName("ISO-8859-1");
+		Charset charset = Charset.forName(encoding); //ISO-8859-1
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					new FileInputStream(currPathDocFile), charset));
@@ -479,5 +480,15 @@ public class LaratModel {
 		
 		notifyObserver(currDocument, chainUnits, currIndexUnit, currDocMetadata);
 	}
+
+	public String getEncoding() {
+		return encoding;
+	}
+
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
+	}
+	
+	
 
 }

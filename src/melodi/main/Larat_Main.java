@@ -12,6 +12,7 @@ public class Larat_Main {
 		 *  Model–view–controller
 		 */
 		LaratModel laratModel = new LaratModel();
+		laratModel.setEncoding("UTF-8");
 		LaratControler laratControler = new LaratControler(laratModel);
 		LaratView laratInterface = new LaratView(laratControler);
 		laratModel.addObserver(laratInterface);
