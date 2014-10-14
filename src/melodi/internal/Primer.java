@@ -2,6 +2,7 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
+import core.Chunk_Lara;
 import talismane_client.datamodel.Structure;
 import melodi.internal.Concept;
 
@@ -12,6 +13,32 @@ public class Primer extends ArrayList<String> implements java.io.Serializable, G
 	 * Machine Learning : EKAW
 	 */
 	Structure structure;
+	
+	/**
+	 * Chacune des unités : 
+	 * item, primer, cloture
+	 * peut être composées de plusieurs chunks.
+	 * 
+	 * Attention, il n'y a pas toujours bijection
+	 * complète entre les éléments de la SE et ses chunks.
+	 * 
+	 * Il faut distinguer "amorce_layout" et "amorce_se".
+	 * La plus simple à trouver est l'amorce "layout", c'est-à-dire
+	 * l'amorce composée de chunk.
+	 * 
+	 * La vraie amorce, au sens linguistique, "amorce_se"
+	 * peut être un sous-ensemble de amorce_layout.
+	 * 
+	 * Chaque chunk a une structure.
+	 * Chaque structure est composée d'une sentence.
+	 * Chaque sentence est composée de tokens.
+	 */
+	
+	
+	ArrayList<Chunk_Lara> listChunk;
+	
+	
+	
 	
 	int id_se;
 	int indice_begin;
@@ -29,6 +56,7 @@ public class Primer extends ArrayList<String> implements java.io.Serializable, G
 		this.circonstant = new Circonstant();
 		this.marqueurRel = new MarqueurRelation();
 		this.structure =  new Structure();
+		this.listChunk = new ArrayList<Chunk_Lara>();
 	}
 	
 	public void setMarqueurRel(MarqueurRelation marqueurRel){
@@ -69,11 +97,11 @@ public class Primer extends ArrayList<String> implements java.io.Serializable, G
 
 	@Override
 	public String toString() {
-		String toReturn = "	#Primer# = [\n";
+		String toReturn = "	#Primer# = [";
 		for (String sequence : this) {
 			toReturn += sequence.toString();
 		}
-		return toReturn + "	]";
+		return toReturn + "	]\n";
 	}
 	
 	public String getText(){
@@ -123,5 +151,15 @@ public class Primer extends ArrayList<String> implements java.io.Serializable, G
 	public Structure getStructure(){
 		return this.structure;
 	}
+
+	public ArrayList<Chunk_Lara> getListChunk() {
+		return listChunk;
+	}
+
+	public void setListChunk(ArrayList<Chunk_Lara> listChunk) {
+		this.listChunk = listChunk;
+	}
+	
+	
 
 }

@@ -222,7 +222,7 @@ public class Unit implements java.io.Serializable, Graphical_Component, Comparab
 		String retur ="SE :";
 
 		if(text != null){
-			retur = retur + text;
+			retur = retur + text + "\n";
 		}
 		
 		if(primer !=null){

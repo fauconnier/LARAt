@@ -53,6 +53,7 @@ public class LaratModel {
 	public LaratModel() {
 		chainUnits = new LinkedList<Unit>();
 		currIndexUnit = -1;
+		encoding = "ISO-8859-1"; //Par défaut, encodage latin-1
 	}
 	
 	public LaratModel(LinkedList<Unit> chainUnits){
@@ -193,6 +194,10 @@ public class LaratModel {
 	
 	public LinkedList<Unit> getAllUnits(){
 		return chainUnits;
+	}
+	
+	public void setAllUnits(LinkedList<Unit> currChain){
+		this.chainUnits = currChain;
 	}
 
 	public void removeUnit(Unit currUnit) {

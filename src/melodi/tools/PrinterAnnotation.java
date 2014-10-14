@@ -9,10 +9,12 @@ public class PrinterAnnotation {
 	
 	String docname;
 	int index_doc;
+	String annotateur;
 	
-	public PrinterAnnotation(String docname, int index_doc){
+	public PrinterAnnotation(String annotateur, String docname, int index_doc){
 		this.docname=docname;
 		this.index_doc=index_doc;
+		this.annotateur=annotateur;
 	}
 	
 	public void run(){
@@ -20,6 +22,7 @@ public class PrinterAnnotation {
 		// Input
 		String doc = docname;
 		int index = index_doc;
+		String annotateur_toprint = annotateur;
 		
 		/**
 		 *  Model–view–controller
@@ -29,11 +32,18 @@ public class PrinterAnnotation {
 		LaratView laratInterface = new LaratView(laratControler);
 		laratModel.addObserver(laratInterface);
 		
-		laratInterface.setTitle("A1 consensus");
+		laratInterface.setTitle(annotateur_toprint + " " + docname + " " + index);
 		/**
 		 * Do something
 		 */
-		laratModel.openFile("/home/jfaucon/Thesis/Data/LARAt_Consensus/Consensus/LARA_corpus/"+doc+".html");
+		
+		if(annotateur_toprint.equals("consensus")){
+			laratModel.openFile("/home/jfaucon/workspace/corpus-LARA/corpus/LARA_corpus/"+doc+".html");
+		}
+		else{
+	//		laratModel.openFile("/home/jfaucon/Thesis/Data/LARAt_Consensus/Consensus/LARA_corpus/"+doc+".html");
+			laratModel.openFile("/home/jfaucon/Thesis/Data/LARAt_Corpus/Annotation/"+annotateur_toprint+"/LARA_corpus/"+doc+".html");
+		}
 		laratModel.selectUnit(index);
 	}
 

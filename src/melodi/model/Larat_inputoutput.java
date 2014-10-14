@@ -2578,15 +2578,23 @@ public class Larat_inputoutput {
 
 	public String getNewPath() {
 		String new_path = path;
+		
+//		System.out.println("DEBUG : " + path);
 
 		if (File.separator.equals("\\")) {
-			new_path = new_path.replaceAll("corpus\\\\((.)*)\\.html",
-					"xml\\\\$1\\.xml");
+			
+//			System.out.println("DEBUG : Windows");
+			new_path =  new_path.replace("LARA_corpus","LARA_xml");
+			
+//			new_path = new_path.replaceAll("corpus\\\\((.)*)\\.html",
+//					"xml\\\\$1\\.xml");
 		} else {
-			new_path = new_path.replaceAll("corpus" + File.separator
-					+ "((.*))\\.html", "xml" + File.separator + "$1\\.xml");
+//			new_path = new_path.replaceAll("corpus" + File.separator
+//					+ "((.*))\\.html", "xml" + File.separator + "$1\\.xml");
+//			System.out.println("DEBUG : Linux");
+			new_path = new_path.replace("LARA_corpus","LARA_xml");
 		}
-		new_path = new_path.replaceAll("html", "xml");
+		new_path = new_path.replaceAll("\\.html", "\\.xml");
 
 		System.out
 				.println("IO_MIG_getNewPath : chemin pour le XML " + new_path);

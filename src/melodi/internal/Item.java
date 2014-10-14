@@ -2,6 +2,7 @@ package melodi.internal;
 
 import java.util.ArrayList;
 
+import core.Chunk_Lara;
 import talismane_client.datamodel.Structure;
 
 public class Item extends ArrayList<String> implements java.io.Serializable, Graphical_Component, Comparable {
@@ -12,7 +13,12 @@ public class Item extends ArrayList<String> implements java.io.Serializable, Gra
 	 * Machine Learning : EKAW
 	 */
 	Structure structure;
-
+	
+	/**
+	 * Thèse
+	 */
+	ArrayList<Chunk_Lara> listChunk;
+	
 	String id;
 	int indice_begin;
 	int indice_end;
@@ -29,6 +35,7 @@ public class Item extends ArrayList<String> implements java.io.Serializable, Gra
 		this.circonstant = new Circonstant();
 		this.marqueurRel = new MarqueurRelation();
 		this.structure =  new Structure();
+		this.listChunk = new ArrayList<Chunk_Lara>();
 	}
 	
 	public void setMarqueurRel(MarqueurRelation marqueurRel){
@@ -101,11 +108,11 @@ public class Item extends ArrayList<String> implements java.io.Serializable, Gra
 	
 	@Override
 	public String toString() {
-		String toReturn = "	Item " + id + " = [\n";
+		String toReturn = "	Item " + id + " = [";
 		for (String sequence : this) {
 			toReturn += sequence.toString();
 		}
-		return toReturn + "\n	]\n";
+		return toReturn + "	]\n";
 	}
 
 	public String getSurface() {
@@ -124,6 +131,19 @@ public class Item extends ArrayList<String> implements java.io.Serializable, Gra
 
 			return 0;
 		}
+	}
+	
+	
+	public Chunk_Lara getChunk(int id){
+		return listChunk.get(id);
+	}
+
+	public ArrayList<Chunk_Lara> getListChunk() {
+		return listChunk;
+	}
+
+	public void setListChunk(ArrayList<Chunk_Lara> listChunk) {
+		this.listChunk = listChunk;
 	}
 
 	@Override

@@ -11,7 +11,8 @@ public class Larat_Printer {
 		 */
 		String docname = "Volcan";
 		int index_doc = 6;
-		PrinterAnnotation printer = new PrinterAnnotation(docname, index_doc);
+		String annotateur = "Jp";
+		PrinterAnnotation printer = new PrinterAnnotation(annotateur, docname, index_doc);
 		printer.run();
 		
 		// Toponyme -> hyperonymes

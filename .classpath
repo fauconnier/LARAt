@@ -8,6 +8,7 @@
 	<classpathentry kind="lib" path="lib/opencsv-2.3.jar"/>
 	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.11.jar"/>
-	<classpathentry kind="lib" path="lib/talismane-client-1.0.0b.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/talismane-client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/object-service"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
