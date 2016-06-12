@@ -7,10 +7,10 @@
 
 ## Features
 
-    * Graphical selection
-    * XML format
-    * Overlapping annotation
-    * Ant deployment
+ * Graphical selection
+ * XML format
+ * Overlapping annotation
+ * Ant deployment
 
 
 ## Example
